@@ -1,16 +1,34 @@
 <template>
   <div class="wrapper">
     <div class="strategy-ball"></div>
+    <form @submit.prevent>
+      <input name="name" type="text" placeholder="请输入姓名" />
+      <input name="number" type="text" placeholder="请输入学号" />
+      <button @click.stop="validate">校验</button>
+    </form>
   </div>
 </template>
 
 <script>
-import { Animate } from '@js/strategy.js'
+import { Animate, Validator } from '@js/strategy.js'
 export default {
   name: 'strategy',
   mounted() {
     const animate = new Animate(document.querySelector('.strategy-ball'))
-    animate.move(100, 'slow').move(100, 'fast').move(100, 'slow')
+    animate
+      .move(100, 'slow')
+      .move(100, 'fast')
+      .move(100, 'slow')
+  },
+  methods: {
+    validate() {
+      const form = document.getElementsByTagName('form')[0]
+      const validator = new Validator()
+      validator.add(form.name.value, 'isNotEmpty')
+      validator.add(form.number.value, 'minLength', { min: 6 })
+      const errMsg = validator.validate()
+      errMsg ? alert(errMsg) : alert('校验成功')
+    }
   }
 }
 </script>
@@ -20,7 +38,7 @@ export default {
   position: relative;
   width: 100%;
   height: 300px;
-  border: 1px solid;
+  margin-top: 20px;
 }
 .strategy-ball {
   position: absolute;
