@@ -5,7 +5,8 @@ module.exports = {
   themeConfig: {
     sidebar: [
       '/singleton',
-      '/strategy'
+      '/strategy',
+      '/proxy'
     ]
   },
   alias: {
