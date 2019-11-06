@@ -6,7 +6,9 @@ module.exports = {
     sidebar: [
       '/singleton',
       '/strategy',
-      '/proxy'
+      '/proxy',
+      '/iterator'
+      
     ]
   },
   alias: {
