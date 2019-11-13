@@ -7,11 +7,41 @@ module.exports = {
       '/singleton',
       '/strategy',
       '/proxy',
-      '/iterator'
-      
+      '/iterator',
+      '/observer'
     ]
   },
   alias: {
     '@js': path.resolve(process.cwd(), './docs/js')
+  },
+  configureWebpack: {
+    resolve: {
+      extensions: ['.ts', '.tsx'],
+    },
+    module: {
+      rules: [
+      {
+        test: /\.ts?$/,
+        exclude: /node_modules/,
+        use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            configFile: false,
+            presets: [
+              '@vue/babel-preset-jsx'
+            ],
+          },
+        },
+        {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+            appendTsxSuffixTo: [/\.vue$/],
+          }
+        }, ]
+      }, ]
+    }
   }
 }
