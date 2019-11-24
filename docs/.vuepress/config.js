@@ -8,7 +8,8 @@ module.exports = {
       '/strategy',
       '/proxy',
       '/iterator',
-      '/observer'
+      '/observer',
+      '/command'
     ]
   },
   alias: {
