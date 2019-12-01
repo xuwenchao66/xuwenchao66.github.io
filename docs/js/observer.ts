@@ -1,7 +1,7 @@
 
 // JavaScript发布-订阅模式的简单实现
 class EventEmitter {
-  private events: Object = {}
+  private events: object = {}
   on(eventName: string, fn: Function): void {
     Array.isArray(this.events[eventName]) ? this.events[eventName].push(fn) : (this.events[eventName] = [fn])
   }

@@ -9,7 +9,8 @@ module.exports = {
       '/proxy',
       '/iterator',
       '/observer',
-      '/command'
+      '/command',
+      '/composite'
     ]
   },
   alias: {
