@@ -10,7 +10,8 @@ module.exports = {
       '/iterator',
       '/observer',
       '/command',
-      '/composite'
+      '/composite',
+      '/template'
     ]
   },
   alias: {
