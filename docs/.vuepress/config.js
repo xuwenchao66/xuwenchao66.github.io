@@ -11,7 +11,7 @@ module.exports = {
       '/observer',
       '/command',
       '/composite',
-      '/template'
+      '/templateMethod'
     ]
   },
   alias: {
