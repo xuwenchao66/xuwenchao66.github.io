@@ -1,5 +1,7 @@
 # 组合模式
 
+## 参考
+
 [http://c.biancheng.net/view/1373.html](http://c.biancheng.net/view/1373.html)
 
 ## 定义

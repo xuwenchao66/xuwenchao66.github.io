@@ -1,5 +1,7 @@
 # 代理模式
 
+## 参考
+
 [https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html#id5](https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/proxy.html#id5)
 
 ## 定义

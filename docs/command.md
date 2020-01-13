@@ -1,5 +1,7 @@
 # 命令模式
 
+## 参考
+
 [https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/command.html](https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/command.html)
 
 ## 定义

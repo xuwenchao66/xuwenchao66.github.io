@@ -11,7 +11,8 @@ module.exports = {
       '/observer',
       '/command',
       '/composite',
-      '/templateMethod'
+      '/templateMethod',
+      'flyweight'
     ]
   },
   alias: {

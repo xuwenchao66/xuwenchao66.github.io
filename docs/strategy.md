@@ -1,5 +1,7 @@
 # 策略模式
 
+## 参考
+
 [https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/strategy.html](https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/strategy.html)
 
 ## 定义

@@ -1,5 +1,7 @@
 # 单例模式
 
+## 参考
+
 [https://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html](https://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/singleton.html)
 
 ## 定义
