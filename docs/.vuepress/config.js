@@ -12,7 +12,8 @@ module.exports = {
       '/command',
       '/composite',
       '/templateMethod',
-      'flyweight'
+      'flyweight',
+      'chainOfResponsibility'
     ]
   },
   alias: {
