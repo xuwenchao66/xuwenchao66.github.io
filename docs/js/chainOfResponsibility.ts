@@ -96,3 +96,57 @@ LA.apply(1)
 LA.apply(3)
 LA.apply(9)
 LA.apply(11)
+
+
+/* 在JavaScript中使用AOP实现责职链模式是一种更便捷的方式
+什么是面向切面编程AOP？参考：https://www.zhihu.com/question/24863332/answer/48376158
+AOP：面向切面编程，这种在运行时，动态地将代码切入到类的指定方法、指定位置上的编程思想就是面向切面的编程。
+一般而言，我们管切入到指定类指定方法的代码片段称为切面，而切入到哪些类、哪些方法则叫切入点。
+有了AOP，我们就可以把几个类共有的代码，抽取到一个切片中，等到需要时再切入对象中去，从而改变其原有的行为。
+在下面的例子中，我们可以把Function.prototype.next方法看作是切面，而handleRequest1,2,3...等看作是切入点，
+next方法动态改变了handleRequest方法的行为。 */
+
+const handleRequest1 = days => {
+  if (days <= 2) {
+    console.log(`班主任允许你请${days}天假`)
+  } else {
+    return true
+  }
+}
+const handleRequest2 = days => {
+  if (days <= 7) {
+    console.log(`系主任允许你请${days}天假`)
+  } else {
+    return true
+  }
+}
+const handleRequest3 = days => {
+  if (days <= 10) {
+    console.log(`院长允许你请${days}天假`)
+  } else {
+    return true
+  }
+}
+const handleRequest4 = () => {
+  console.log('请假天数太多，没有人批准该假条！')
+}
+
+interface Function {
+  next(fun: Function): Function
+}
+Function.prototype.next = function (fn: Function): Function {
+  return (days: number) => {
+    const isNext = this(days)
+    if (isNext) return fn.call(fn, days)
+  }
+}
+
+const handleRequest = handleRequest1
+  .next(handleRequest2)
+  .next(handleRequest3)
+  .next(handleRequest4)
+
+handleRequest(1)
+handleRequest(4)
+handleRequest(8)
+handleRequest(20)
