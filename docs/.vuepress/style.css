@@ -1,0 +1,16 @@
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #e7e9eb;
+}
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+.page .theme-default-content:not(.custom) {
+  max-width: 850px;
+}
