@@ -1,7 +1,7 @@
 // 泡茶跟冲咖啡有些步骤是一致的，所以将这些一致的行为抽离到抽象父类Beverage中，
 // 然后具体差异分别在Coffee、tea中
 
-class Beverage {
+abstract class Beverage {
   init() {
     this.brew()
     this.pourInCup()
@@ -14,9 +14,9 @@ class Beverage {
   wantCondiments() {
     return true
   }
-  brew() { }
-  pourInCup() { }
-  addCondiments() { }
+  abstract brew(): void
+  abstract pourInCup(): void
+  abstract addCondiments(): void
 }
 
 class Coffee extends Beverage {
