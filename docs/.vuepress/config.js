@@ -14,7 +14,8 @@ module.exports = {
       'templateMethod',
       'flyweight',
       'chainOfResponsibility',
-      'mediator'
+      'mediator',
+      'decorator'
     ]
   },
   alias: {
