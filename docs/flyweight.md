@@ -1,5 +1,7 @@
 # 享元模式
 
+## 参考
+
 [https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/flyweight.html](https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/flyweight.html)
 
 [http://c.biancheng.net/view/1371.html](http://c.biancheng.net/view/1371.html)

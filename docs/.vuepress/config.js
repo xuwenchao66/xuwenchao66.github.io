@@ -15,7 +15,8 @@ module.exports = {
       'flyweight',
       'chainOfResponsibility',
       'mediator',
-      'decorator'
+      'decorator',
+      'state'
     ]
   },
   alias: {

@@ -1,5 +1,7 @@
 # 观察者模式
 
+## 参考
+
 [https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html](https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html)
 
 ## 定义

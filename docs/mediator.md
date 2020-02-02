@@ -1,5 +1,7 @@
 # 中介者模式
 
+## 参考
+
 [https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/mediator.html](https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/mediator.html)
 
 [http://c.biancheng.net/view/1393.html](http://c.biancheng.net/view/1393.html)
