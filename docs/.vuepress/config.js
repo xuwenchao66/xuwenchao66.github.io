@@ -16,7 +16,8 @@ module.exports = {
       'chainOfResponsibility',
       'mediator',
       'decorator',
-      'state'
+      'state',
+      'adapter'
     ]
   },
   alias: {
