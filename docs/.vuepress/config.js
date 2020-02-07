@@ -1,27 +1,36 @@
 const path = require('path')
+const resolvePath = src => path.resolve(process.cwd(), src)
+
 module.exports = {
-  title: 'JavaScript设计模式与开发实践',
+  title: 'Emem...',
   description: '此项目记录在看《JavaScript设计模式与开发实践》一书时敲的代码以及思考',
   themeConfig: {
-    sidebar: [
-      'singleton',
-      'strategy',
-      'proxy',
-      'iterator',
-      'observer',
-      'command',
-      'composite',
-      'templateMethod',
-      'flyweight',
-      'chainOfResponsibility',
-      'mediator',
-      'decorator',
-      'state',
-      'adapter'
-    ]
+    // 此项目记录在看《JavaScript设计模式与开发实践》一书时敲的代码以及思考
+    sidebar: {
+      '/designPatterns/': [
+        '',
+        'singleton',
+        'strategy',
+        'proxy',
+        'iterator',
+        'observer',
+        'command',
+        'composite',
+        'templateMethod',
+        'flyweight',
+        'chainOfResponsibility',
+        'mediator',
+        'decorator',
+        'state',
+        'adapter'
+      ],
+      '/sourceCode/': [
+        ''
+      ]
+    }
   },
   alias: {
-    '@js': path.resolve(process.cwd(), './docs/js')
+    '@designPatterns': resolvePath('./docs/designPatterns')
   },
   configureWebpack: {
     resolve: {
