@@ -10,7 +10,6 @@ export default ({
     const componentName = (to.path.match(/\/(\w+)\./) || [])[1]
     if (isRouterChange && /^\/designPatterns/.test(to.path) && componentName) {
       import(`../designPatterns/components/${componentName}`).then(module => {
-        console.log(module)
         Vue.component(module.default.name, module.default)
         module.default._compiled = false
         next()
