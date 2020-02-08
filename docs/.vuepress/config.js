@@ -2,14 +2,15 @@ const path = require('path')
 const resolvePath = src => path.resolve(process.cwd(), src)
 
 module.exports = {
-  title: 'Emem...',
+  title: `xuwenchao' blog`,
   description: '徐文超个人博客',
   themeConfig: {
     nav: require('./nav'),
     sidebar: require('./sidebar')
   },
   alias: {
-    '@designPatterns': resolvePath('./docs/designPatterns')
+    '@designPatterns': resolvePath('./docs/designPatterns'),
+    '@sourceCode': resolvePath('./docs/sourceCode')
   },
   configureWebpack: {
     resolve: {

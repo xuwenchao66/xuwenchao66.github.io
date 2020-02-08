@@ -17,6 +17,7 @@ module.exports = {
     'adapter'
   ],
   '/sourceCode/': [
-    ''
+    '',
+    'koaCompose'
   ]
 }
