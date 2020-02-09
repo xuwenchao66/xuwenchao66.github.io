@@ -3,6 +3,6 @@
 <script>
 import '@designPatterns/js/iterator.js'
 export default {
-  name: 'iterator'
+  name: 'designPatterns-iterator'
 }
 </script>

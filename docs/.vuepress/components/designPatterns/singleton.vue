@@ -4,6 +4,6 @@
 <script>
 import '@designPatterns/js/singleton.js'
 export default {
-  name: 'singleton'
+  name: 'designPatterns-singleton'
 }
 </script>

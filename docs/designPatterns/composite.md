@@ -31,6 +31,6 @@ UI组件中tree组件，文件系统中的文件、文件夹，公司以及公�
 
 ## 代码实例
 
-<composite />
+<designPatterns-composite />
 
 <<< @/docs/designPatterns/js/composite.ts

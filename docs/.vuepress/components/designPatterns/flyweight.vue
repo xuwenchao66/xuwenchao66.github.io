@@ -3,6 +3,6 @@
 <script>
 import '@designPatterns/js/flyweight.ts'
 export default {
-  name: 'flyweight'
+  name: 'designPatterns-flyweight'
 }
 </script>

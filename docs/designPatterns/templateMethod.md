@@ -50,4 +50,4 @@
 
 <<< @/docs/designPatterns/js/templateMethod.ts
 
-<templateMethod />
+<designPatterns-templateMethod />

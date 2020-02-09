@@ -7,7 +7,7 @@
 <script>
 import { loadImg, loadImgWithHolder } from '@designPatterns/js/proxy.js'
 export default {
-  name: 'proxy',
+  name: 'designPatterns-proxy',
   mounted() {
     const imgNode1 = document.createElement('img')
     const imgNode2 = document.createElement('img')

@@ -3,6 +3,6 @@
 <script>
 import '@designPatterns/js/mediator.ts'
 export default {
-  name: 'mediator'
+  name: 'designPatterns-ediator'
 }
 </script>

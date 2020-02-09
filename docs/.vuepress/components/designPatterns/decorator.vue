@@ -3,6 +3,6 @@
 <script>
 import '@designPatterns/js/decorator.ts'
 export default {
-  name: 'decorator'
+  name: 'designPatterns-decorator'
 }
 </script>

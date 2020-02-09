@@ -61,4 +61,4 @@
 
 <<< @/docs/designPatterns/js/decorator.ts
 
-<decorator />
+<designPatterns-decorator />

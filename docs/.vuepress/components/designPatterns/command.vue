@@ -5,6 +5,6 @@
 <script>
 import '@designPatterns/js/command.ts'
 export default {
-  name: 'command'
+  name: 'designPatterns-command'
 }
 </script>

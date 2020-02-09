@@ -14,6 +14,6 @@ forEach、Iterator
 
 ## 代码实例
 
-<iterator />
+<designPatterns-iterator />
 
 <<< @/docs/designPatterns/js/iterator.js

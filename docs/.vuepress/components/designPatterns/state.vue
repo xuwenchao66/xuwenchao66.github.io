@@ -3,6 +3,6 @@
 <script>
 import '@designPatterns/js/state.ts'
 export default {
-  name: 'state'
+  name: 'designPatterns-state'
 }
 </script>

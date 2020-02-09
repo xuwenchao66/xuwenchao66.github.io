@@ -47,4 +47,4 @@
 
 <<< @/docs/designPatterns/js/adapter.ts
 
-<adapter />
+<designPatterns-adapter />

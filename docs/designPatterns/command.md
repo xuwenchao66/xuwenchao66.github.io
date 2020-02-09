@@ -32,6 +32,6 @@
 
 ## 代码实例
 
-<command />
+<designPatterns-command />
 
 <<< @/docs/designPatterns/js/command.ts

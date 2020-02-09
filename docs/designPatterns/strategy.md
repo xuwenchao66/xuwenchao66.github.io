@@ -28,4 +28,4 @@
 
 <<< @/docs/designPatterns/js/strategy.js
 
-<strategy />
+<designPatterns-strategy />

@@ -20,4 +20,4 @@
 
 <<< @/docs/designPatterns/js/singleton.js
 
-<singleton />
+<designPatterns-singleton />

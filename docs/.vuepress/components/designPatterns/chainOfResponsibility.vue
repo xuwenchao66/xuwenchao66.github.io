@@ -3,6 +3,6 @@
 <script>
 import '@designPatterns/js/chainOfResponsibility.ts'
 export default {
-  name: 'chainOfResponsibility'
+  name: 'designPatterns-chainOfResponsibility'
 }
 </script>

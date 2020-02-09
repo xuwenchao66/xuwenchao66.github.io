@@ -54,4 +54,4 @@
 
 <<< @/docs/designPatterns/js/mediator.ts
 
-<mediator />
+<designPatterns-mediator />

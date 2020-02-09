@@ -55,4 +55,4 @@
 
 <<< @/docs/designPatterns/js/state.ts
 
-<state />
+<designPatterns-state />

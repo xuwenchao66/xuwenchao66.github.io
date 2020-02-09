@@ -50,4 +50,4 @@
 
 <<< @/docs/designPatterns/js/chainOfResponsibility.ts
 
-<chainOfResponsibility />
+<designPatterns-chainOfResponsibility />

@@ -3,6 +3,6 @@
 <script>
 import '@designPatterns/js/adapter.ts'
 export default {
-  name: 'adapter'
+  name: 'designPatterns-adapter'
 }
 </script>

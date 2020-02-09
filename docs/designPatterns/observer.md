@@ -24,6 +24,6 @@
 
 ## 代码实例
 
-<observer />
+<designPatterns-observer />
 
 <<< @/docs/designPatterns/js/observer.ts

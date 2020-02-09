@@ -12,7 +12,7 @@
 <script>
 import { Animate, Validator } from '@designPatterns/js/strategy.js'
 export default {
-  name: 'strategy',
+  name: 'designPatterns-strategy',
   mounted() {
     const animate = new Animate(document.querySelector('.strategy-ball'))
     animate

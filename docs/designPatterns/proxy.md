@@ -35,6 +35,6 @@
 
 ## 代码实例
 
-<proxy />
+<designPatterns-proxy />
 
 <<< @/docs/designPatterns/js/proxy.js

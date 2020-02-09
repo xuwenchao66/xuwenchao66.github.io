@@ -4,6 +4,6 @@
 <script>
 import '@designPatterns/js/templateMethod.ts'
 export default {
-  name: 'templateMethod'
+  name: 'designPatterns-templateMethod'
 }
 </script>

@@ -59,4 +59,4 @@
 
 <<< @/docs/designPatterns/js/flyweight.ts
 
-<flyweight />
+<designPatterns-flyweight />
