@@ -17,6 +17,7 @@ app.use(async (ctx, next) => {
 })
 app.use(async (ctx, next) => {
   console.log('3---start')
+  console.log('3---end')
 })
 
 app
@@ -32,6 +33,7 @@ app
   2---start
   // 两秒后继续执行
   3---start
+  3---end
   2---end
   1---end
   所有中间件执行完毕
