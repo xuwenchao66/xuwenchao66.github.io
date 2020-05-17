@@ -10,7 +10,7 @@ module.exports = {
   },
   alias: {
     '@designPatterns': resolvePath('./docs/designPatterns'),
-    '@sourceCode': resolvePath('./docs/sourceCode')
+    '@blogs': resolvePath('./docs/blogs')
   },
   configureWebpack: {
     resolve: {

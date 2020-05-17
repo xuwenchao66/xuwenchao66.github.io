@@ -9,6 +9,6 @@ module.exports = [{
   text: '算法',
   link: '/arithmetic/'
 }, {
-  text: '源码解析',
-  link: '/sourceCode/'
+  text: '博客',
+  link: '/blogs/'
 }]

@@ -1,4 +1,4 @@
-# koa-compose
+# koa-compose源码解析
 
 koa是一个基于node.js的web开发框架，其最大特点就是它的中间件执行控制，洋葱模型。
 
@@ -10,11 +10,11 @@ koa是一个基于node.js的web开发框架，其最大特点就是它的中间�
 
 ## 实现一个简版koa app
 
-<<< @/docs/sourceCode/js/koaCompose/app.ts
+<<< @/docs/blogs/js/koaCompose/app.ts
 
 ## 实现compose函数
 
-<<< @/docs/sourceCode/js/koaCompose/compose.ts
+<<< @/docs/blogs/js/koaCompose/compose.ts
 
 - 通过compose函数的调用方式`compose(this.middleware)(this.ctx)`，可知compose函数是一个高阶函数，返回一个函数。
 
@@ -76,9 +76,9 @@ koa是一个基于node.js的web开发框架，其最大特点就是它的中间�
 
 ## 测试代码
 
-<<< @/docs/sourceCode/js/koaCompose/test.ts
+<<< @/docs/blogs/js/koaCompose/test.ts
 
-<sourceCode-koaCompose />
+<blogs-koaCompose />
 
 上面只对部分的核心代码进行解析，完整的实现请前往[https://github.com/koajs/compose/blob/master/index.js](https://github.com/koajs/compose/blob/master/index.js)
 

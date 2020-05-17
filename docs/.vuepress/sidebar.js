@@ -16,7 +16,7 @@ module.exports = {
     'state',
     'adapter'
   ],
-  '/sourceCode/': [
+  '/blogs/': [
     '',
     'koaCompose'
   ]
