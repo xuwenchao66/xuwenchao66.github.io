@@ -1,5 +1,5 @@
 const path = require('path')
-const resolvePath = src => path.resolve(process.cwd(), src)
+const resolvePath = (src) => path.resolve(process.cwd(), src)
 
 module.exports = {
   title: `xuwenchao' blog`,
@@ -9,37 +9,37 @@ module.exports = {
     sidebar: require('./sidebar')
   },
   alias: {
-    '@designPatterns': resolvePath('./docs/designPatterns'),
+    '@design-patterns': resolvePath('./docs/design-patterns'),
     '@blogs': resolvePath('./docs/blogs')
   },
   configureWebpack: {
     resolve: {
-      extensions: ['.ts', '.tsx'],
+      extensions: ['.ts', '.tsx']
     },
     module: {
       rules: [
-      {
-        test: /\.ts?$/,
-        exclude: /node_modules/,
-        use: [
         {
-          loader: 'babel-loader',
-          options: {
-            babelrc: false,
-            configFile: false,
-            presets: [
-              '@vue/babel-preset-jsx'
-            ],
-          },
-        },
-        {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-            appendTsxSuffixTo: [/\.vue$/],
-          }
-        }, ]
-      }, ]
+          test: /\.ts?$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                configFile: false,
+                presets: ['@vue/babel-preset-jsx']
+              }
+            },
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                appendTsxSuffixTo: [/\.vue$/]
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  '/designPatterns/': [
+  '/design-patterns/': [
     '',
     'singleton',
     'strategy',
@@ -16,8 +16,5 @@ module.exports = {
     'state',
     'adapter'
   ],
-  '/blogs/': [
-    '',
-    'koaCompose'
-  ]
+  '/blogs/': ['', 'koa-compose', 'write-webpack-plugin']
 }
