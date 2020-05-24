@@ -6,7 +6,8 @@ module.exports = {
   description: '徐文超个人博客',
   themeConfig: {
     nav: require('./nav'),
-    sidebar: require('./sidebar')
+    sidebar: require('./sidebar'),
+    sidebarDepth: 3
   },
   alias: {
     '@design-patterns': resolvePath('./docs/design-patterns'),
