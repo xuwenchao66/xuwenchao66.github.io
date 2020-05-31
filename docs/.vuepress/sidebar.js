@@ -16,5 +16,5 @@ module.exports = {
     'state',
     'adapter'
   ],
-  '/blogs/': ['', 'koa-compose', 'write-webpack-plugin']
+  '/blogs/': ['', 'koa-compose', 'write-webpack-plugin', 'babel']
 }
