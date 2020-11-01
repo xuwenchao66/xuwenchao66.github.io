@@ -48,6 +48,6 @@
 
 ## 代码实例
 
-<<< @/docs/design-patterns/js/templateMethod.ts
+<<< @/docs/design-patterns/js/template-method.ts
 
-<design-patterns-templateMethod />
+<design-patterns-template-method />

@@ -48,6 +48,6 @@
 
 ## 代码实例
 
-<<< @/docs/design-patterns/js/chainOfResponsibility.ts
+<<< @/docs/design-patterns/js/chain-of-responsibility.ts
 
-<design-patterns-chainOfResponsibility />
+<design-patterns-chain-of-responsibility />

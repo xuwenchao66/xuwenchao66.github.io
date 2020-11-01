@@ -8,13 +8,14 @@ module.exports = {
     'observer',
     'command',
     'composite',
-    'templateMethod',
+    'template-method',
     'flyweight',
-    'chainOfResponsibility',
+    'chain-of-responsibility',
     'mediator',
     'decorator',
     'state',
-    'adapter'
+    'adapter',
+    'factory-method'
   ],
   '/blogs/': ['', 'koa-compose', 'write-webpack-plugin', 'babel']
 }
