@@ -15,7 +15,8 @@ module.exports = {
     'decorator',
     'state',
     'adapter',
-    'factory-method'
+    'factory-method',
+    'simple-factory-pattern'
   ],
   '/blogs/': ['', 'koa-compose', 'write-webpack-plugin', 'babel']
 }
