@@ -20,5 +20,6 @@ module.exports = {
     'abstract-factory-method',
     'prototype'
   ],
-  '/blogs/': ['', 'koa-compose', 'write-webpack-plugin', 'babel']
+  '/blogs/': ['', 'koa-compose', 'write-webpack-plugin', 'babel'],
+  '/reading-notes/': ['', 'refactoring']
 }
