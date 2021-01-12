@@ -18,7 +18,8 @@ module.exports = {
     'factory-method',
     'simple-factory-pattern',
     'abstract-factory-method',
-    'prototype'
+    'prototype',
+    'builder'
   ],
   '/blogs/': ['', 'koa-compose', 'write-webpack-plugin', 'babel'],
   '/reading-notes/': ['', 'refactoring']
