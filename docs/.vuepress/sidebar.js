@@ -15,8 +15,8 @@ module.exports = {
     'decorator',
     'state',
     'adapter',
-    'factory-method',
     'simple-factory-pattern',
+    'factory-method',
     'abstract-factory-method',
     'prototype',
     'builder'
