@@ -502,20 +502,22 @@
 
    ```js
    class Person {
+     constructor(name) {
+       this.name = name
+     }
      walk() {
-       console.log('walk')
+       console.log(this.name, 'walking.')
        return this
      }
      sayHi() {
-       console.log('hi')
+       console.log('Hi, i am', this.name)
        return this
      }
    }
-
-   new Person().walk().sayHi()
+   new Person('Tony').walk().sayHi()
    ```
 
-   使用命令对象能更实现链式调用，更清晰表达代码语义，而且函数之间共享上下文，尽管有着复杂、冗长的调用链，也能够通过上下文（如 JavaScript 中的 this）轻松获得参数。
+   使用命令对象能更实现链式调用，加之数据与行为的聚合，能更清晰表达代码语义。而且函数之间共享上下文，尽管有着复杂、冗长的调用链，也能够通过上下文（如 JavaScript 中的 this）轻松获得参数。
 
    但这也会提高代码复杂度，在函数作为一等公民的 JavaScript 中，如果普通函数已经能够清晰表达、完成其功能了，那么应该优先使用普通函数。
 
