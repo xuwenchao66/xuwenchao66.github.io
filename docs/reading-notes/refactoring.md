@@ -526,3 +526,237 @@
     **以命令取代函数**的反向手段，如上所说，命令对象提供了强大的机制，强语义、函数间共享数据简便等。
 
     但很多时候我们只需要一个简单的函数，完成一项简单的任务，此时命令对象需要获取类、然后实例化后才能调用，这就显得费力不讨好了，使用普通函数或许是更好的选择。
+
+## 第 12 章 处理继承关系
+
+1. 函数上移（Pull Up Method）。
+
+   如各个子类中都有相似、甚至相同的函数体，尝试将其从子类移除、提升至超类。以减少重复代码，避免需要“处处修改”的问题。
+
+   函数体内的些许不同，可应用函数参数化，来简单处理不同的逻辑。
+
+2. 字段上移（Pull Up Field）。
+
+   如各个子类拥有重复字段，如果他们的含义以及使用方式一致，将其上移至超类。
+
+3. 构造函数本体上移（Pull Up Constructor Body）。
+
+   如各个子类的构造函数中有相同行为，将其上移至超类，其中的变量也可以传递给超类的构造函数。
+
+   如下：
+
+   ```js
+   class Person {
+     constructor() {}
+   }
+
+   class Man extends Person {
+     constructor(name) {
+       super()
+       this.name = name
+     }
+   }
+
+   class Woman extends Person {
+     constructor(name) {
+       super()
+       this.name = name
+     }
+   }
+   ```
+
+   可转换为：
+
+   ```js
+   class Person {
+     constructor(name) {
+       this.name = name
+     }
+   }
+
+   class Man extends Person {
+     constructor(name) {
+       super(name)
+     }
+   }
+
+   class Woman extends Person {
+     constructor(name) {
+       super(name)
+     }
+   }
+   ```
+
+4. 函数下移（Push Down Method） & 字段下移（Push Down Field）。
+
+   如超类的某个函数、字段只与一个（或少数几个）有关，那么最好将其从超类中移除，放到真正关系他们的子类中，以减少其它子类的负担。
+
+5. 以子类取代类型码（Replace Type Code with Subclasses）。
+
+   系统中经常需要表现“相似但又不相同的东西”，比如一个后台管理系统中，有三种不同权限角色，分别是普通用户、管理员、超级管理员。最直观就是增一个类型字段比如`type`来区分不同的角色。
+
+   大多数时候，有类型字段就足够了，但是随着系统升级，各个角色的不同数据、功能出现越来越多的条件分支，让系统变得难以维护。为此，可尝试引入子类，通过子类将**不同类型用户**这一概念**显性化**。
+
+   这样我们就可以用多台来取代复杂的条件分支语句，同时子类的出现也能更明确地表达数据、行为的关系，让系统领域更清晰、易扩展。
+
+   比如：
+
+   ```ts
+   enum UserTypes {
+     normal,
+     admin,
+     superAdmin
+   }
+
+   class User {
+     type: UserTypes = UserTypes.normal
+     constructor(type: UserTypes) {
+       this.type = type
+     }
+     login() {
+       if (this.type === UserTypes.normal) {
+         // do someting
+       } else if (this.type === UserTypes.admin) {
+         // do someting
+       } else if (this.type === UserTypes.superAdmin) {
+         // do someting
+       }
+     }
+   }
+   ```
+
+   可转化为：
+
+   ```ts
+   enum UserTypes {
+     normal,
+     admin,
+     superAdmin
+   }
+
+   abstract class User {
+     type: UserTypes = UserTypes.normal
+     abstract login(): void
+   }
+
+   class Normal extends User {
+     type = UserTypes.normal
+     login() {
+       // do someting
+     }
+   }
+
+   class Admin extends User {
+     type = UserTypes.admin
+     login() {
+       // do someting
+     }
+   }
+
+   class SuperAdmin extends User {
+     type = UserTypes.superAdmin
+     login() {
+       // do someting
+     }
+   }
+
+   const createUser = (type: UserTypes) => {
+     if (type === UserTypes.normal) return new Normal()
+     if (type === UserTypes.admin) return new Admin()
+     if (type === UserTypes.superAdmin) return new SuperAdmin()
+   }
+   ```
+
+6. 移除子类（Remove Subclass）。
+
+   子类为数据、行为的多态提供了支持，是针对差异编程的好工具。
+
+   但是随着系统演化，子类所支持的差异化数据、行为可能被移动到别处，甚至去除，这时候应该将子类去除，避免无效类带来系统的复杂度提升。
+
+7. 提炼超类（Extract Superclass）。
+
+   如发现两个类在做相似、甚至相同的事情，可利用继承机制，将它们的相似之处提炼到超类之中。
+
+8. 折叠继承体系（Collapse Hierarchy）。
+
+   在重构继承体系的过程中，如发现一个类与超类没有多大区别，这时候可将超类和子类合并，以降低系统复杂度。
+
+9. 以委托取代子类（Replace Subclass with Delegate）。
+
+   如果一个对象的行为有明显的区分，那么继承、多态是很自然的表达方式。但继承也有其缺点，主要有以下两点：
+
+   1. 一个类只能进行一次继承，系统中导致行为不同的原因有很多，从不同维度能有多种提炼超类的方向，但是却不能同时继承多个超类。
+
+   2. 继承给类之间引入了非常紧密的联系，在超类上做任何修改都有可能对子类造成意外的影响，所以得非常小心。
+
+   上述两个问题，都可以通过委托解决。不同的行为委托给不同的类，与继承相比，委托的接口更清晰，耦合更低，这也是为什么有那么一句话“组合优先于继承”。
+
+   比如有这么一个机器人售卖系统，不同机械人有不同的攻击方式，那么起初设计很自然的以不同的机器人类型为纬度，来对进行系统实现，有以下代码：
+
+   ```ts
+   // 机器人超类
+   abstract class Robot {
+     abstract fight(): void
+   }
+   // 使用刀攻击的机器人
+   class RobotWithKnife extends Robot {
+     fight() {
+       console.log('Fight with knife.')
+     }
+   }
+   // 使用枪攻击的机器人
+   class RobotWithGun extends Robot {
+     fight() {
+       console.log('Fight with gun.')
+     }
+   }
+   ```
+
+   但是随着科技研发，系统中增加了更多不同款式机器人，攻击`fight`甚至不是机器人的必备因素了，有的机器人用于运输、医疗等等。为此需要通过新的纬度比如，不同世代`generation`来对机器人进行基准分类。
+   所以我们将原有的继承转化为委托，代码如下：
+
+   ```ts
+   enum RobotTypes {
+     knife,
+     gun
+   }
+
+   class RobotWithKnife {
+     fight() {
+       console.log('Fight with knife.')
+     }
+   }
+
+   class RobotWithGun {
+     fight() {
+       console.log('Fight with gun.')
+     }
+   }
+
+   class Robot {
+     typeDelegate
+     constructor(type: RobotTypes) {
+       this.typeDelegate = this.selectTypeDelegate(type)
+     }
+     selectTypeDelegate(type: RobotTypes) {
+       if (type === RobotTypes.knife) return new RobotWithKnife()
+       if (type === RobotTypes.gun) return new RobotWithGun()
+       return this
+     }
+     fight() {
+       return this.typeDelegate ? this.typeDelegate.fight() : undefined
+     }
+   }
+   ```
+
+   这样不同类型机器人不再与机器人这一超类耦合，同时也允许系统能够以世代这一中更要的纬度来对系统进行重构。
+
+10. 以委托取代超类（Replace Superclass with Delegate）。
+
+    在面向对象编程中，通过继承来复用现有功能，是一种既强大又便捷的手段。
+
+    但继承也有可能造成困扰和混乱，比如超类的所有方法都会出现在子类中，如果超类中过多的属性、方法不应该出现在子类中，说明使用继承也许是一个错误的选择。
+
+    如果把这错误的继承关系改为，子类需要的行为委托给另一个类，这样就能在复用代码的同时避免不必要的混乱。
+
+    当然继承是一种简洁、高效的复用机制，多数情况可以先考虑继承，不合适再转换成委托。
