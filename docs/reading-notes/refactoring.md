@@ -757,6 +757,38 @@
 
     但继承也有可能造成困扰和混乱，比如超类的所有方法都会出现在子类中，如果超类中过多的属性、方法不应该出现在子类中，说明使用继承也许是一个错误的选择。
 
-    如果把这错误的继承关系改为，子类需要的行为委托给另一个类，这样就能在复用代码的同时避免不必要的混乱。
+    如果把这错误的继承关系改为委托，子类需要的行为委托给另一个类去执行，这样就能在复用代码的同时避免不必要的混乱。
 
     当然继承是一种简洁、高效的复用机制，多数情况可以先考虑继承，不合适再转换成委托。
+
+    如一个系统中，有一个成员（Member）类，新增需求，成员需要加入部门，为了使用加入部门的方法（addMembers）继承了部门（Department）类。代码如下：
+
+    ```ts
+    class Department {
+      addMembers() {}
+      transferMembers() {}
+      deleteMembers() {}
+    }
+    
+    class Member extends Department {}
+    ```
+
+    这里就是典型的错误继承，成员同时拥有了部门的其它属性、方法，模糊了系统边界，让系统变得难以理解维护。更好的做法应该是 Member 类将加入行为委托转发由 Department 类来执行，如下：
+
+    ```ts
+    class Department {
+      addMembers(members: Member[]) {}
+      transferMembers() {}
+      deleteMembers() {}
+    }
+
+    class Member {
+      department: Department
+      constructor() {
+        this.department = new Department()
+      }
+      joinDepartment() {
+        this.department.addMembers([this])
+      }
+    }
+    ```
