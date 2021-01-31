@@ -7,8 +7,10 @@ module.exports = {
   themeConfig: {
     nav: require('./nav'),
     sidebar: require('./sidebar'),
-    sidebarDepth: 3
+    sidebarDepth: 3,
+    lastUpdated: '上次更新'
   },
+  plugins: ['@vuepress/last-updated'],
   alias: {
     '@design-patterns': resolvePath('./docs/design-patterns'),
     '@blogs': resolvePath('./docs/blogs')

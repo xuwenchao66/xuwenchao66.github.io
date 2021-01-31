@@ -21,6 +21,12 @@ module.exports = {
     'prototype',
     'builder'
   ],
-  '/blogs/': ['', 'koa-compose', 'write-webpack-plugin', 'babel'],
+  '/blogs/': [
+    '',
+    'koa-compose',
+    'write-webpack-plugin',
+    'babel',
+    'docker-started'
+  ],
   '/reading-notes/': ['', 'refactoring']
 }
