@@ -23,6 +23,7 @@ module.exports = {
   ],
   '/blogs/': [
     '',
+    'linux-command',
     'koa-compose',
     'write-webpack-plugin',
     'babel',
