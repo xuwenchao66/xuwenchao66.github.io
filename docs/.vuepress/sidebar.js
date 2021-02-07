@@ -27,7 +27,8 @@ module.exports = {
     'koa-compose',
     'write-webpack-plugin',
     'babel',
-    'docker-started'
+    'docker-introduction',
+    'docker-installation'
   ],
   '/reading-notes/': ['', 'refactoring']
 }
