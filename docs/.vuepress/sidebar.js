@@ -28,7 +28,8 @@ module.exports = {
     'write-webpack-plugin',
     'babel',
     'docker-introduction',
-    'docker-installation'
+    'docker-installation',
+    'docker-practice'
   ],
   '/reading-notes/': ['', 'refactoring']
 }
