@@ -106,3 +106,8 @@ docker run -d -p 8000:8000 hello-docker
 - `-p 8000:8000`，宿主机器的 8000 端口映射至容器的 8000 端口。
 
 启动成功之后，执行`docker container ls`可以看见多出了一个 status 为 up 的容器。我们访问宿主机器的 8000 端口，比如 http://192.168.0.103:8000/ ，此时可看见浏览器返回了 Hello Docker 文本，至此我们的自定义镜像、容器已经成功部署运行。
+
+## 参考
+
+1. [https://docs.docker.com/get-started/](https://docs.docker.com/get-started/)
+2. [Docker 入门教程](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html)
