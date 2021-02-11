@@ -26,7 +26,6 @@
 
 - 保护代理可以控制对真实对象的使用权限。
 
-
 ## 缺点
 
 - 由于在客户端和真实主题之间增加了代理对象，因此有些类型的代理模式可能会造成请求的处理速度变慢。
@@ -35,6 +34,8 @@
 
 ## 代码实例
 
-<design-patterns-proxy />
+<ClientOnly>
+  <design-patterns-proxy />
+</ClientOnly>
 
 <<< @/docs/design-patterns/js/proxy.js
