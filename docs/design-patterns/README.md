@@ -9,3 +9,5 @@
 - [图说设计模式](https://design-patterns.readthedocs.io/zh_CN/latest/index.html)
 
 - [软件设计模式概述](http://c.biancheng.net/view/1317.html)
+
+- [https://refactoringguru.cn/design-patterns](https://refactoringguru.cn/design-patterns)
