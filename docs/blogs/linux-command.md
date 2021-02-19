@@ -159,6 +159,31 @@ ctrl + z
 - kill n（n 为进程 id）
 - kill %n（n 为任务 id，如果要杀死任务，也可根据任务 id 杀死任务）
 
+## 硬件、系统信息
+
+### 查看磁盘空间使用情况
+
+- df
+- df -h，以更方便阅读的方式显示
+- df -l，只列出本地磁盘
+
+### 查看文件、目录的磁盘占用空间情况
+
+- du file，如 file 为文件，显示其大小，如为目录显示该目录及其子目录大小
+- du -a file，显示目录及目录所有文件（文件夹以及文件）大小
+- du -h file，以易读方式显示
+- du -s file，仅显示总计（不显示子文件、目录）
+- du --max-depth=1 file，仅显示所在目录深度为 1 的文件
+
+### 查看内存使用情况
+
+- free
+- free -h，以易读方式显示
+- free -g，以 gb 为单位显示内存使用情况，同理有 -k、-m
+- free -t，total 的意思，以总和方式显示
+- free -s n，周期性查询内存使用情况，n 为秒
+- free -hs n，组合命令
+
 ## 参考
 
 1. [linuxcommand.org](http://linuxcommand.org/lc3_learning_the_shell.php)
