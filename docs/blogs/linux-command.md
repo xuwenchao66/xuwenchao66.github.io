@@ -124,13 +124,20 @@ job（任务）、process（进程） 的区别。[参考](https://unix.stackexc
 - ps au，仅查看当前终端会话中的进程，展示比较详细的信息
 - ps x，查看系统中的所进程
 - ps aux，查看所有进程，展示比较详细的信息
-- ps -ef，同 ps aux，但两者属于不同的展示风格
+- ps -ef，同 ps aux，但两者属于不同的展示风格(e 为 select every process，f 为 full listing )
 - ps -ef | grep keyword，常用命令，组合管道操作、grep，过滤出与 keyword 关键字相关的进程
+
+### 获取目标进程信息
+
+- pidof process_name（进程名），根据进程名获取进程 id
+- ps -fC process_name，C 为 select processes by command name，根据命令名称选则进程
+- ps -ef | grep process_name，使用管道操作根据进程名过滤出目标进程信息
 
 ### 实时展示进程状态
 
 - top
 - top -c，显示完整命令
+- top -p pid1,pid2,pid3 ，查看指定 id 的进程实时状态
 
 ### 查看任务
 
