@@ -240,7 +240,7 @@ class Plugin {
 module.exports = Plugin
 ```
 
-更多可参考[webpack-inject-chunk-filename-plugin](https://github.com/xu-wen-chao/webpack-inject-chunk-filename-plugin)的完整源码
+更多可参考[webpack-inject-chunk-filename-plugin](https://github.com/xuwenchao66/webpack-inject-chunk-filename-plugin)的完整源码
 
 ## 参考资源
 
