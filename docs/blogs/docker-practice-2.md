@@ -85,5 +85,4 @@ docker: Error response from daemon: driver failed programming external connectiv
 
 ## 参考
 
-1. [https://docs.docker.com/get-started/](https://docs.docker.com/get-started/)
-2. [Docker 入门教程](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html)
+1. [https://docs.docker.com/get-started/03_updating_app/](https://docs.docker.com/get-started/03_updating_app/)

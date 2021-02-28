@@ -77,5 +77,5 @@ docker run -d -p 8000:8000 hello-docker
 
 ## 参考
 
-1. [https://docs.docker.com/get-started/](https://docs.docker.com/get-started/)
+1. [https://docs.docker.com/get-started/02_our_app/](https://docs.docker.com/get-started/02_our_app/)
 2. [Docker 入门教程](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html)
