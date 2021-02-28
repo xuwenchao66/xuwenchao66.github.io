@@ -28,7 +28,8 @@ module.exports = [
       'docker-practice-0',
       'docker-practice-1',
       'docker-practice-2',
-      'docker-practice-3'
+      'docker-practice-3',
+      'docker-practice-4'
     ]
   }
 ]
