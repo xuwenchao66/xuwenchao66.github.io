@@ -1,14 +1,27 @@
 module.exports = [
   '',
-  'linux-command',
   'koa-compose',
   'write-webpack-plugin',
   'babel',
   'publish-npm-package',
   {
+    title: 'linux 常用命令',
+    collapsable: false,
+    sidebarDepth: 1,
+    children: [
+      'linux-commands',
+      'linux-commands-terminal-control',
+      'linux-commands-cursor-movement',
+      'linux-commands-delete-on-terminal',
+      'linux-commands-terminal-history',
+      'linux-commands-process-and-job',
+      'linux-commands-system-and-hardware'
+    ]
+  },
+  {
     title: 'docker',
     collapsable: false,
-    sidebarDepth: 2,
+    sidebarDepth: 1,
     children: [
       'docker-introduction',
       'docker-installation',
