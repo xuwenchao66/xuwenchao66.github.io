@@ -2,6 +2,7 @@ module.exports = [
   '',
   'koa-compose',
   'write-webpack-plugin',
+  'standardize-git-commit-message',
   'babel',
   'publish-npm-package',
   {
