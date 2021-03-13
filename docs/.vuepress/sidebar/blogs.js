@@ -6,6 +6,12 @@ module.exports = [
   'babel',
   'publish-npm-package',
   {
+    title: 'rollup',
+    collapsable: false,
+    sidebarDepth: 1,
+    children: ['rollup-why']
+  },
+  {
     title: 'linux 常用命令',
     collapsable: false,
     sidebarDepth: 1,
