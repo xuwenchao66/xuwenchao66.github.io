@@ -9,7 +9,7 @@ module.exports = [
     title: 'rollup',
     collapsable: false,
     sidebarDepth: 1,
-    children: ['rollup-why']
+    children: ['rollup-why', 'rollup-basic-practice']
   },
   {
     title: 'linux 常用命令',
