@@ -3,8 +3,13 @@ module.exports = [
   'koa-compose',
   'write-webpack-plugin',
   'standardize-git-commit-message',
-  'babel',
   'publish-npm-package',
+  {
+    title: 'babel',
+    collapsable: false,
+    sidebarDepth: 1,
+    children: ['babel']
+  },
   {
     title: 'rollup',
     collapsable: false,
