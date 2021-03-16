@@ -46,28 +46,25 @@ Babel 只是一个编译器，它就像一个纯函数`const babel = code => cod
 
 ### presets
 
-从上面可知 Babel 的具体功能都由 plugins 来实现，那么如果要编译一个应用，我们岂不得添加一堆插件？
+从上面可知 Babel 的具体功能都由 plugins 来实现，那么如果要编译一个应用，我们岂不得添加一堆插件、参数配置？
 
-为了解决这个问题，presets（预置）出现了。presets 可以理解为是 plugins 甚至是部分配置的集合，有了 presets 就可以不用再单独配置一个个插件、参数了，直接使用已经组合、配置好的 presets 即可。
+为了解决这个问题，presets（预置）出现了。presets 可以理解为是 plugins 、部分配置的集合，有了 presets 就可以不用再单独配置一个个 plugin、参数了，直接使用已经组合、配置好的 presets 即可。
 
 ## 常用工具链
 
 ### @babel/polyfill
 
-[babel-polyfill](https://babeljs.io/docs/en/babel-polyfill)是`Babel`的工具链之一，它包含了[regenerator runtime](https://github.com/facebook/regenerator)和[core-js](https://github.com/zloirock/core-js)
+[babel-polyfill](https://babeljs.io/docs/en/babel-polyfill)包含了[core-js](https://github.com/zloirock/core-js)和[regenerator runtime](https://github.com/facebook/regenerator)。
 
-[regenerator runtime](https://github.com/facebook/regenerator)运行时库，能够将`generators`、`yield`、`async`等编译转换成拥有相同功能的`ES5`兼容代码。
+core-js，现代 JavaScript 标准库，提供了 ES6+ 的 promises，symbols，collections、iterators ，typed arrays 等全局变量、实例方法等填充库。
 
-[core-js](https://github.com/zloirock/core-js)，现代`JavaScript`标准库，提供了`promises`，`symbols`，` collections``iterators `，`typed arrays`等等
-全局变量、实例方法等。
+regenerator runtime 运行时库，能够将 generators、yield、async 等编译转换成拥有相同功能的 ES5 兼容代码。
 
-通过`babel-polyfill`能够模拟完整的`ES2015+`环境，通常建议在应用中使用，而不是在工具库中使用。
+这意味着，通过 babel-polyfill 你能够使用新的内建函数，比如 Promise，静态方法 Array.from 或者 Object.assign，实例方法 Array.prototype.includes 和 generator 函数（generators、yield、async 等的实现）。这些 polyfill 和原生 prototype 上的方法一样被添加到了全局作用域中。
 
-这意味着，通过`babel-polyfill`你能够使用新的内建函数，比如`Promise`，静态方法`Array.from`或者`Object.assign`，实例方法`Array.prototype.includes`和`generator`函数（`generators`、`yield`、`async`等的实现）。这些`polyfill`和原生`prototype`上的方法一样被添加到了全局作用域中。
+所以，Babel（语法编译）+ polyfill（api 垫片），才能够完整的模拟一套**完整的**ES2015+ 环境。
 
-总结，`Babel`（语法编译）+ `polyfill`（api 垫片），才能够完整的模拟一套**完整的**`ES2015+` 环境。
-
-注意，在`Babel` 7.4.0 中，`@babel/polyfill`已经被弃用了，取而代之的是直接引用`core-js/stable`和`regenerator-runtime/runtime`
+注意，在 Babel 7.4.0 中，@babel/polyfill 已经被弃用了，取而代之的是 core-js/stable 和 regenerator-runtime/runtime
 
 ```js
 import 'core-js/stable'
@@ -76,13 +73,7 @@ import 'regenerator-runtime/runtime'
 
 ### @babel/preset-env
 
-[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)
-
-上面提到了`babel-polyfill`，那么我们直接在应用入口直接`import "core-js`就可以了？是，但这把所有`polyfill`代码都引入了，不管应用中有没有用到，造成应用体积过大。
-
-这时候能够想到，应用中用到了什么新的 api，就在代码里面按需`import`不就可以了吗？比如用到了`padStart`，那么就在代码中`import "core-js/modules/es.string.pad-start"`。这样是解决了多余代码的问题，但是这样开发、维护成本很高，每次要用一个 api 都要手动`import`对应的`polyfill`进来，想想就可怕。
-
-[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)就是用来解决上面提到的问题，它能够自动的帮我们按需引入`polyfill`。
+[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)是一个预置集合，它能够**自动**进行语法转换、甚至添加 polyfill，而无需进行复杂的配置、管理。
 
 常见配置如下：
 
@@ -99,11 +90,11 @@ import 'regenerator-runtime/runtime'
 }
 ```
 
-`useBuiltIns`参数决定`@babel/preset-env`如何处理`polyfills`。
+useBuiltIns 参数决定 @babel/preset-env 如何处理 polyfills。
 
-该参数值可以是`"usage"，"entry"，false`其中之一，默认是`false`。
+该参数值可以是"usage"，"entry"，false 其中之一，默认是 false。
 
-`useBuiltIns: 'entry'`，会把应用入口的引入`polyfills`语句替换为按需引用语句，比如：
+useBuiltIns: 'entry'，会把应用入口的引入 polyfills 语句替换为按需引用语句，比如：
 
 输入:
 
@@ -137,11 +128,9 @@ var a = new Promise()
 
 ### @babel/runtime & @babel/plugin-transform-runtime
 
-[@babel/runtime](https://babeljs.io/docs/en/next/babel-runtime.html)包含了`Babel`模块运行时帮助函数以及`regenerator-runtime`。
+[@babel/runtime](https://babeljs.io/docs/en/next/babel-runtime.html)包含了 Babel 模块运行时帮助函数以及 regenerator-runtime。
 
-[@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime)这是一个能够复用`Babel`注入的帮助函数的插件，通过它能够节省代码大小。这里的**transform-runtime**就指的是`@babel/runtime`，所以使用`@babel/plugin-transform-runtime`之前也必须安装`@babel/runtime`
-
-注意：实例方法比如`"foobar".includes("foo")`，不会通过`transform-runtime`注入，你可以使用`core-js`或者`@babel/preset-env`来进行`polyfill`。
+[@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime)这是一个能够复用 Babel 注入的帮助函数的插件，通过它能够节省代码大小。这里的**transform-runtime**就指的是 @babel/runtime，所以使用 @babel/plugin-transform-runtime 之前也必须安装 @babel/runtime。
 
 看完官方简单的介绍应该还有点模糊，下面用官方的例子再来解释下。
 
@@ -169,9 +158,9 @@ var Person = function Person() {
 
 1. 污染了全局变量。
 
-2. 假如工具库 A 和工具库 B 中都编译出了`_classCallCheck`这就产生了冗余重复的代码，增大了代码体积。
+2. 假如工具库 A 和工具库 B 中都编译出了`_classCallCheck`就会产生了冗余重复的代码，增加了文件体积。
 
-而且上面的两个问题是用户无法感知的，如果我们使用了`transform-runtime`之后编译成如下代码：
+如果我们使用了 transform-runtime 之后编译成如下代码：
 
 ```js
 var _classCallCheck2 = require('@babel/runtime/helpers/classCallCheck')
@@ -187,7 +176,7 @@ var Person = function Person() {
 }
 ```
 
-这里我们可以看到`_classCallCheck`作为依赖引入了，而不是直接编译进入代码，`transform-runtime`就是提供了这么一个沙盒环境，避免了污染全局变量、重复的`babel`帮助函数代码等问题。
+这里我们可以看到`_classCallCheck`作为依赖引入了，而不是直接编译进入代码，transform-runtime 就是提供了这么一个沙盒环境，避免了污染全局变量、重复的 babel 帮助函数代码等问题。
 
 ## 参考
 
