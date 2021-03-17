@@ -73,7 +73,7 @@ import 'regenerator-runtime/runtime'
 
 ### @babel/preset-env
 
-[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)是一个预置集合，它能够**自动**进行语法转换、甚至添加 polyfill，而无需进行复杂的配置、管理。
+[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)是一个预置集合，它能够根据目标浏览器环境（可配置的targets）**自动**进行语法转换、甚至添加 polyfill，而无需进行复杂的配置、管理。
 
 常见配置如下：
 
