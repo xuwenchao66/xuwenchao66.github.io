@@ -8,7 +8,7 @@ module.exports = [
     title: 'babel',
     collapsable: false,
     sidebarDepth: 1,
-    children: ['babel']
+    children: ['babel', 'babel-practice']
   },
   {
     title: 'rollup',
