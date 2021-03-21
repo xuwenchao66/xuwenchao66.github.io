@@ -7,19 +7,16 @@ module.exports = [
   {
     title: 'babel',
     collapsable: false,
-    sidebarDepth: 1,
     children: ['babel', 'babel-practice']
   },
   {
     title: 'rollup',
     collapsable: false,
-    sidebarDepth: 1,
-    children: ['rollup-why', 'rollup-basic-practice']
+    children: ['rollup-why', 'rollup-basic-practice', 'rollup-build-library']
   },
   {
     title: 'linux 常用命令',
     collapsable: false,
-    sidebarDepth: 1,
     children: [
       'linux-commands',
       'linux-commands-terminal-control',
@@ -33,7 +30,6 @@ module.exports = [
   {
     title: 'docker',
     collapsable: false,
-    sidebarDepth: 1,
     children: [
       'docker-introduction',
       'docker-installation',
