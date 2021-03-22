@@ -14,15 +14,19 @@
 
 执行`npm whoami`查看当前的已登陆用户，如果出现了自己的用户名，说明登陆成功。
 
-## 实现一个简单的 package
-
-### 初始化项目
+## 初始化项目
 
 新建一个目录用于保存、维护将要发布的 package，在目录中执行`npm init`初始化一个 npm 项目，package name 要注意不要与已有的 package 重名，因为 npm 不允许有两个相同、相似名称的 package。
 
 初始化成功之后，可以看见目录中多了一个 package.json 文件。
 
-### package.json 简单解读
+在目录中创建一个 index.js ，文件内容如下。
+
+```js
+console.log('hello npm')
+```
+
+## package.json 字段解析
 
 package.json 用于描述我们的 npm package 基本信息，打开 package.json ，可见如下内容。
 
@@ -40,23 +44,60 @@ package.json 用于描述我们的 npm package 基本信息，打开 package.jso
 }
 ```
 
-- name，package 的名字。
-- version，package 的版本。
-- description，package 的简单描述。
-- main，package 的主入口文件，当使用者 import 你的 package 的时候，就是从这个入口文件 import。
-- scripts，自定义的 npm 脚本命令。
-- author，作者。
-- license，软件许可证类型。
+- name： package 的名字。
+- version：package 的版本。
+- description：package 的简单描述。
+- main：package 的主入口文件，当使用者 import 你的 package 的时候，就是从这个入口文件 import。
+- scripts：自定义的 npm 脚本命令。
+- author：作者。
+- license：软件许可证类型。
+
+### 其它常用字段
+
+- module
+
+  也是 package 的主入口文件。跟 main 有什么区别呢？
+
+  module 用来声明 ES 模块规范的入口文件，因为 ES 模块支持静态分析，能够更好的 TreeShaking，所以 webpack 等构建工具会优先读取 module 字段，没有的话再去读取 main 字段。
+
+  nodejs 的 require 只认得 main 字段，所以 main 一般用于声明 commonjs 模块规范的入口文件。
+
+  所以在日常实践中，推荐 main、module 都声明，main 声明 commonjs 模块入口文件，module 声明 ES 模块入口文件。
+
+- files
+
+  很多时候我们的 package 可能有多个不同的入口文件，这时候即可用[files](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#files)声明一个数组将多个文件包含进来。
+
+  如下就会将当前目录的 src 文件夹中，以及 dist 下的 js 文件都包含为模块文件，在 package 安装之后，能够看见这些文件的存在。
+
+  ```json
+  "files": [
+    "src",
+    "dist/*.js",
+  ],
+  ```
+
+- peerDependencies
+
+  对于 devDependencies 和 dependencies 我们已经再熟悉不过了，但是 peerDependencies 呢？从[ant-design](https://github.com/ant-design/ant-design/blob/master/package.json)和[element](https://github.com/ElemeFE/element/blob/dev/package.json)两个主流组件库可见都有声明该字段。
+
+  peerDependencies 可以理解为前置依赖，在使用我们的 package 的时候，需要安装 peerDependencies 里面要求的依赖。那跟 dependencies 有什么区别呢？
+
+  声明为 dependencies 的依赖会随着我们的 package 安装而一起安装进来，而 peerDependencies 不会，如果没有安装 peerDependencies 里的依赖，npm install 的时候只会出现警告。
+
+  那么为什么不直接用 dependencies？ 因为声明为 dependencies 的话，比如应用、和 package 的 react 依赖版本不同，那么就会导入两个同名但不同版本的 react，那么对于需要保证单例的依赖就会出现警告、报错、甚至运行错误。
+
+  所以 peerDependencies 适合用于声明那些 package 的必须、但又需要保证整个应用中只有一个的依赖。
+
+  如下会告诉应用使用方，在 install package 的时候，必须安装版本号大于或等于 16.9.0 的 react，否则会出现警告。
+
+  ```json
+  "peerDependencies": {
+    "react": ">=16.9.0"
+  }
+  ```
 
 关于 package.json 的更多字段含义，可从[https://docs.npmjs.com/cli/v6/configuring-npm/package-json](https://docs.npmjs.com/cli/v6/configuring-npm/package-json)中查看。
-
-### package 主文件
-
-在目录中创建一个 index.js 脚本，脚本会内容如下。
-
-```js
-console.log('hello npm')
-```
 
 ## 发布
 
