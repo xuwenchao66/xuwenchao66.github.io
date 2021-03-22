@@ -1,4 +1,4 @@
-# 如何发布一个 npm 包
+# 发布自己的 npm package
 
 ## npm 账号
 
