@@ -5,6 +5,11 @@ module.exports = [
   'standardize-git-commit-message',
   'publish-npm-package',
   {
+    title: 'webpack',
+    collapsable: false,
+    children: ['webpack-introduction']
+  },
+  {
     title: 'babel',
     collapsable: false,
     children: ['babel', 'babel-practice']
