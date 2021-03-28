@@ -31,6 +31,12 @@ webpack 默认只能识别 JavaScript 以及 JSON 文件，loaders 让 webpack �
 
 插件能够扩展 webpack 的能力，执行更多不同的任务，比如构建优化、注入环境变量等。
 
+### [Mode](https://webpack.js.org/concepts/#mode)
+
+`mode`可以是 `development`、`production`、`none`三者其一，默认值为`production`，用于告诉 webpack 是否该启用其内置的优化，以及注入对应的环境变量。
+
+关于`mode`的更详细信息可查阅[https://webpack.js.org/configuration/mode/](https://webpack.js.org/configuration/mode/)。
+
 ## webpack 入门使用
 
 ### 项目初始化
