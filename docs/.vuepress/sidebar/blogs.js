@@ -7,7 +7,13 @@ module.exports = [
   {
     title: 'webpack',
     collapsable: false,
-    children: ['webpack-introduction', 'webpack-practice']
+    children: [
+      'webpack-introduction',
+      'webpack-practice-0',
+      'webpack-practice-1',
+      'webpack-practice-2',
+      'webpack-practice-3'
+    ]
   },
   {
     title: 'babel',
