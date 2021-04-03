@@ -12,7 +12,8 @@ module.exports = [
       'webpack-practice-0',
       'webpack-practice-1',
       'webpack-practice-2',
-      'webpack-practice-3'
+      'webpack-practice-3',
+      'webpack-practice-4'
     ]
   },
   {
