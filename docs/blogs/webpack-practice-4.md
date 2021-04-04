@@ -1,5 +1,7 @@
 # webpack 实践(4): 给应用添加样式
 
+下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
+
 ## 使用 css
 
 给应用加上样式就是使用 `css`，同样的为了让 `webpack` 能够识别 `css` 文件，需要添加对应的 `loader`。

@@ -4,6 +4,8 @@
 
 当然如果要开发其它应用，比如 `react`，整体套路也是差不多的，就是要换成对应的 `loader` 或添加 `plugins` 让 webpack 能够识别不同技术栈的语法、文件。
 
+下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
+
 ## 创建、引入模版文件
 
 ```vue

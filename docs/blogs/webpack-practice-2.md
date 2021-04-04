@@ -4,6 +4,8 @@
 
 `webpack-dev-server` 能够监听文件改变，然后自动执行构建、刷新页面，支持热更新，而且它启动后是将构建结果保存在内存中，所以读取速度更快。
 
+下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
+
 ## 安装相关依赖
 
 ```sh
