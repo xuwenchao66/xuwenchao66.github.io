@@ -1,12 +1,12 @@
 # webpack 实践(0): 项目基础搭建
 
-在[webpack 入门](/blogs/webpack-introduction.html)一文中我们已经对 webpack 有一个基本的了解了，`webpack` 实践系列文章将从零开始一步步搭建一个基于`webpack5` 和 `vue3`的应用开发、生产环境。
+在[webpack 入门](/blogs/webpack-introduction.html)一文中我们已经对 webpack 有一个基本的了解了，`webpack` 实践系列文章将从零开始一步步搭建一个基于 `webpack5` 和 `vue3` 的应用开发、生产环境。
 
 下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
 
 ## 项目初始化
 
-为了方便对本系列博客相关实践代码进行分类，此次实践相关代码均在`app`目录中。
+为了方便对本系列博客相关实践代码进行分类，此次实践相关应用代码均在 `app` 目录中。
 
 ### 安装相关依赖
 
@@ -102,7 +102,7 @@ module.exports = {
 ```json
 "scripts": {
   ...,
-  "build:app": "webpack --config app/webpack.config.js"
+  "build:app": "webpack --config webpack.config.js"
 },
 ```
 

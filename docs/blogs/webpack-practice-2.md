@@ -104,8 +104,8 @@ module.exports = {
 ```json
 "scripts": {
   ...,
-  "build:app": "webpack --config app/build/webpack.prod.js",
-  "dev:app": "webpack serve --config app/build/webpack.dev.js"
+  "build:app": "webpack --config build/webpack.prod.js",
+  "dev:app": "webpack serve --config build/webpack.dev.js"
 }
 ```
 
