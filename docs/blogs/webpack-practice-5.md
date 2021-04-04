@@ -1,4 +1,4 @@
-# webpack 实践(4): 使用 Babel
+# webpack 实践(5): 使用 Babel
 
 查看构建出来的脚本可发现，里面存在不少 `const` 等 `ES6+` 的语法糖，为了让代码能够在老旧的浏览器中正确运行，需要使用 `Babel` 来将代码编译成 `ES5` 以及添加 `polyfill`。
 
