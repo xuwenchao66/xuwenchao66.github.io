@@ -40,7 +40,7 @@ module.exports = {
     entry: './app/index.js',
     output: {
       filename: 'main.js',
-      path: resolvePath('app/dist')
+      path: resolvePath('app', 'dist')
     },
     module: {
       rules: [
@@ -52,7 +52,7 @@ module.exports = {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: resolvePath('app/index.html')
+        template: resolvePath('app', 'index.html')
       }),
       new VueLoaderPlugin()
     ]
@@ -80,6 +80,7 @@ module.exports = {
   module.exports = merge(base, {
     mode: 'development',
     devtool: 'inline-source-map',
+    target: 'web',
     devServer: {
       contentBase: resolvePath('dist'),
       hot: true,
@@ -90,6 +91,7 @@ module.exports = {
   ```
 
   - `devtool`：用于决定如何生成 `source maps`，为了方便调试，在开发环境中一般都会开启。
+  - `target`： 告诉 webpack 编译环境目标，这里得声明为 `web`，否则如果项目中存在 `.browserslistrc` 配置文件，热更新可能会失效。
   - `devServer`： 该选项决定了 `webpack-dev-server` 的表现。
 
     - `contentBase`：静态服务器根目录。

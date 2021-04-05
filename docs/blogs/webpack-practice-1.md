@@ -58,7 +58,7 @@ module.exports = {
   entry: './app/index.js',
   output: {
     filename: 'main.js',
-    path: resolvePath('app/dist')
+    path: resolvePath('app', 'dist')
   },
   module: {
     rules: [
@@ -70,7 +70,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: resolvePath('app/index.html')
+      template: resolvePath('app', 'index.html')
     }),
     new VueLoaderPlugin()
   ]
