@@ -4,7 +4,7 @@
 
 ## 开始使用
 
-1. 全局安装 rollup。
+1. 全局安装 `rollup`。
 
    ```sh
    npm install --global rollup
@@ -12,13 +12,13 @@
 
 2. 新建工程、文件用于构建测试。
 
-   新建一个文件夹，用于测试。新建需要编译的文件 index.js 内容如下。
+   新建一个文件夹，用于测试。新建需要编译的文件 `index.js` 内容如下。
 
    ```js
    export const log = () => console.log('hello rollup')
    ```
 
-3. 通过全局 CLI 执行构建。
+3. 通过全局 `CLI` 执行构建。
 
    执行下方命令，开始构建。
 
@@ -26,21 +26,21 @@
    rollup index.js --file dist/bundle.js --format es
    ```
 
-   执行成功后可以发现，出现了一个 dist 文件夹，里面有一个 bundle.js，就是构建输出的文件。
+   执行成功后可以发现，出现了一个 `dist` 文件夹，里面有一个 `bundle.js`，就是构建输出的文件。
 
    命令简析：
 
-   - `rollup index.js`： 使用 rollup 对 index.js 进行编译。
-   - `--file dist/bundle.js`： 输出到`dist/bundle.js`。
-   - `--format es`：输出格式为 ES 模块。
+   - `rollup index.js`： 使用 `rollup` 对 `index.js` 进行编译。
+   - `--file dist/bundle.js`： 输出到 `dist/bundle.js`。
+   - `--format es`：输出格式为 `ES` 模块。
 
 ## 使用配置文件
 
-使用 CLI 能快速上手，但是落实到实践的时候，使用配置文件是更合适的选择，因为其可读性更好而且更强大。
+使用 `CLI` 能快速上手，但是落实到实践的时候，使用配置文件是更合适的选择，因为其可读性更好而且更强大。
 
-通常配置文件是一个名为 rollup.config.js 的文件，该文件在项目根目录。配置文件导出一个对象。
+通常配置文件是一个名为 `rollup.config.js` 的文件，该文件在项目根目录。配置文件导出一个对象。
 
-1. 新增 rollup.config.js，其内容如下。
+1. 新增 `rollup.config.js`，其内容如下。
 
    ```js
    export default {
@@ -54,7 +54,7 @@
 
 2. 指定配置文件，执行构建。
 
-   执行下方命令，成功构建。`--config`用于指定配置文件，也可用缩写`-c`。
+   执行下方命令，成功构建。`--config` 用于指定配置文件，也可用缩写 `-c`。
 
    ```sh
    rollup --config rollup.config.js
@@ -62,19 +62,23 @@
 
 ## 常用配置
 
-- input
+### 常用配置项
 
-  构建入口描述，常用的是使用一个字符串来描述入口文件的所在位置。input 也可以是一个数组、对象，更多详细用法可查看[rollupjs#input](http://rollupjs.org/guide/en/#input)。
+- `input`
 
-- output
+  构建入口描述，常用的是使用一个字符串来描述入口文件的所在位置。input 也可以是一个数组、对象，更多详细用法可查看 [rollupjs#input](http://rollupjs.org/guide/en/#input)。
 
-  构建输出描述，通常一个对象，output 常用的属性有：
+- `output`
 
-  - output.file 指定输出文件。
+  构建输出描述，通常一个对象，`output` 常用的属性有：
 
-  - output.format 指定输出的格式。可以是 es、cjs、umd 等常见的模块格式。
+  - `output.file` 指定输出文件。
 
-  更多详细用法可查看[rollupjs#output](http://rollupjs.org/guide/en/#outputdir)。
+  - `output.format` 指定输出的格式。可以是 `es`、`cjs`、`umd` 等常见的模块格式。
+
+  更多详细用法可查看 [rollupjs#output](http://rollupjs.org/guide/en/#outputdir)。
+
+### 常用配置方案
 
 - 单入口、单出口。
 
@@ -90,9 +94,9 @@
 
 - 单入口、多出口。
 
-  某些场景，我们的库可能需要同时提供给 browser、server 端使用。
+  某些场景，我们的库可能需要同时提供给 `browser`、`server` 端使用。
 
-  所以需要同时输出 es、commonjs 规范模块，这时候可以把 input 声明为一个数组，这样就能一个入口拥有不同格式 的输出。
+  所以需要同时输出 `es`、`commonjs` 规范的模块，这时候可以把 `input` 声明为一个数组，这样就能一个入口拥有不同格式 的输出。
 
   ```js
   export default {
@@ -112,7 +116,7 @@
 
 - 多入口、多出口。
 
-  一个库可能有多个不同的入口文件，这时候可以使用数组来声明配置对象。我们新增一个 main.js 入口文件，然后使用如下配置就能够实现多入口、出口的构建。
+  一个库可能有多个不同的入口文件，这时候可以使用数组来声明配置对象。我们新增一个 `main.js` 入口文件，然后使用如下配置就能够实现多入口、出口的构建。
 
   ```js
   export default [
@@ -147,11 +151,11 @@
 
 ## 常用插件
 
-在实践中我们往往会引用外部的 npm package，比如 lodash。同时为了兼容较低版本的浏览器，也需要将代码编译成 ES5。
+在实践中我们往往会引用外部的 `npm package`，比如 `lodash`。同时为了兼容较低版本的浏览器，也需要将代码编译成 `ES5`。
 
-在项目中安装 lodash，`npm i lodash`。
+在项目中安装 `lodash`，`npm i lodash`。
 
-在 index.js 中引入使用 lodash，修改文件为。
+在 `index.js` 中引入使用 `lodash`，修改文件为。
 
 ```js
 import cloneDeep from 'lodash/cloneDeep'
@@ -161,9 +165,9 @@ export const log = () => {
 }
 ```
 
-执行构建，可以发现，控制台中出现了警告，而且编译出来的代码，箭头函数还存在，没有编译为 ES5。
+执行构建，可以发现，控制台中出现了警告，而且编译出来的代码，箭头函数还存在，没有编译为 `ES5`。
 
-这是因为 rollup 本身只包含了其核心功能，其它应用所需功能以**插件**的形式来实现。这样同时保证了 rollup 的扩展性、可维护性。
+这是因为 `rollup` 本身只包含了其核心功能，其它应用所需功能以**插件**的形式来实现。这样同时保证了 `rollup` 的扩展性、可维护性。
 
 ### [@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)
 
@@ -174,13 +178,13 @@ export const log = () => {
 https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
 ```
 
-这是因为 rollup 默认只会解析相对路径的模块，如`import main from './main.js'`。
+这是因为 `rollup` 默认只会解析相对路径的模块，如 `import main from './main.js'`。
 
-当使用如`import cloneDeep from 'lodash/cloneDeep'`时，rollup 是不知道该如何找到该模块的，所以把此模块认为是 external（外置依赖）。
+当使用如 `import cloneDeep from 'lodash/cloneDeep'` 时，`rollup` 是不知道该如何找到该模块的，所以把此模块认为是 `external`（外置依赖）。
 
-为了让 rollup 能够使用[nodejs 的模块解析方案](https://nodejs.org/api/modules.html#modules_all_together)，需要使用[node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)插件。
+为了让 `rollup` 能够使用 [nodejs 的模块解析方案](https://nodejs.org/api/modules.html#modules_all_together)，需要使用 [node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve) 插件。
 
-安装依赖`npm install @rollup/plugin-node-resolve --save-dev`。
+安装依赖 `npm install @rollup/plugin-node-resolve --save-dev`。
 
 在配置中使用插件。
 
@@ -193,18 +197,18 @@ export default {
 }
 ```
 
-这时候在此执行构建，会发现原有的警告消失了，说明 rollup 已经成功找到了模块。但是出现了另外一个报错。
+这时候在此执行构建，会发现原有的警告消失了，说明 `rollup` 已经成功找到了模块。但是出现了另外一个报错。
 
 ```sh
 [!] Error: 'default' is not exported by ../node_modules/lodash/cloneDeep.js, imported by index.js
 https://rollupjs.org/guide/en/#error-name-is-not-exported-by-module
 ```
 
-这是因为 rollup 使用的是 ES 模块机制，无法解析 commonjs 的模块，所以如果需要引入 commonjs 模块，需要使用@rollup/plugin-commonjs 插件。
+这是因为 `rollup` 使用的是 `ES` 模块机制，无法解析 `commonjs` 的模块，所以如果需要引入 `commonjs` 模块，需要使用 `@rollup/plugin-commonjs` 插件。
 
 ### [@rollup/plugin-commonjs](https://github.com/rollup/plugins/tree/master/packages/commonjs)
 
-能够将 commonjs 模块转换成 ES 模块，这样 rollup 就能解析 commonjs 模块了。
+能够将 `commonjs` 模块转换成 `ES` 模块，这样 `rollup` 就能解析 `commonjs` 模块了。
 
 安装依赖`npm install @rollup/plugin-commonjs --save-dev`。
 
@@ -220,13 +224,13 @@ export default {
 }
 ```
 
-再次构建，这次导入了 lodash，构建成功。
+再次构建，这次导入了 `lodash`，构建成功。
 
 ### [@rollup/plugin-babel](https://github.com/rollup/plugins/tree/master/packages/babel)
 
 根据上面的了解，可知语法转译也需要安装插件来处理。
 
-安装依赖`npm install @rollup/plugin-babel @babel/core --save-dev`。
+安装依赖 `npm install @rollup/plugin-babel @babel/core --save-dev`。
 
 修改配置文件。
 
@@ -241,12 +245,12 @@ export default {
 }
 ```
 
-再次执行构建可以发现 ES6 的箭头函数、const 等语法糖都转译成 ES5。
+再次执行构建可以发现 `ES6` 的箭头函数、`const` 等语法糖都转译成 `ES5`。
 
 ### 更多常用插件
 
-- [@rollup/plugin-eslint](https://github.com/rollup/plugins/tree/master/packages/eslint)，eslint。
-- [@rollup/plugin-alias](https://github.com/rollup/plugins/tree/master/packages/alias)，类似 webpack 的 alias 配置，为模块设置别名。
+- [@rollup/plugin-eslint](https://github.com/rollup/plugins/tree/master/packages/eslint)，`eslint`。
+- [@rollup/plugin-alias](https://github.com/rollup/plugins/tree/master/packages/alias)，类似 `webpack` 的 `alias` 配置，为模块设置别名。
 - [rollup-plugin-terser](https://github.com/TrySound/rollup-plugin-terser)，代码压缩。
 - [rollup-plugin-filesize](https://github.com/ritz078/rollup-plugin-filesize)，展示构建输出的文件体积。
 
