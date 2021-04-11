@@ -1,20 +1,20 @@
-# 如何写一个webpack插件
+# webpack plugin 开发入门
 
-最近工作中有这么一个需求，需要将webpack最终构建出来的**文件目录名+文件名**注入到指定的chunk或者模板文件中。
+最近工作中有这么一个需求，需要将 webpack 最终构建出来的**文件目录名+文件名**注入到指定的 chunk 或者模板文件中。
 
-说到这里会想起一个我们很熟悉的webpack插件[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)，这个插件可以将最终构建的chunk文件目录名+文件名注入到html文件中。与开头提到的需求类似，只不过一个是注入到html文件，一个是注入到js文件。
+说到这里会想起一个我们很熟悉的 webpack 插件[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)，这个插件可以将最终构建的 chunk 文件目录名+文件名注入到 html 文件中。与开头提到的需求类似，只不过一个是注入到 html 文件，一个是注入到 js 文件。
 
 在找了一圈没有能满足需求的插件之后，决定自己写一个。
 
-## webpack插件的基本组成、工作方式
+## webpack 插件的基本组成、工作方式
 
 ### 基本结构
 
-从官方文档[Writing a Plugin](https://webpack.js.org/contribute/writing-a-plugin/)中，可以知道，插件是一个可**实例化的对象，该对象原型中拥有apply方法**。
+从官方文档[Writing a Plugin](https://webpack.js.org/contribute/writing-a-plugin/)中，可以知道，插件是一个可**实例化的对象，该对象原型中拥有 apply 方法**。
 
 主要由以下部分组成：
 
-1. 一个JavaScript命名函数或者一个类。
+1. 一个 JavaScript 命名函数或者一个类。
 
 2. 在插件函数的 prototype 或者类上定义一个 apply 方法。
 
@@ -33,32 +33,35 @@ class MyExampleWebpackPlugin {
     compiler.hooks.emit.tapAsync(
       'MyExampleWebpackPlugin',
       (compilation, callback) => {
-        console.log('This is an example plugin!');
-        console.log('Here’s the `compilation` object which represents a single build of assets:', compilation);
+        console.log('This is an example plugin!')
+        console.log(
+          'Here’s the `compilation` object which represents a single build of assets:',
+          compilation
+        )
         // 4.处理 webpack 内部实例的特定数据
-        compilation.addModule(/* ... */);
+        compilation.addModule(/* ... */)
         // 5.功能完成后调用 webpack 提供的回调
-        callback();
+        callback()
       }
-    );
+    )
   }
 }
 ```
 
-### Compiler对象
+### Compiler 对象
 
 在插件模板中可以看到在插件的`apply`方法中可以获取到`compiler`对象，该对象可以理解为每当启动一次`webpack`都会创建一次的编译器对象。
 
 在该对象中我们可以拿到运行时`webpack`的配置、环境，比如`webpack`配置中的`entry`、`loader`、`plugins`等等。
 
-[Compiler的hooks](https://webpack.js.org/api/compiler-hooks/)
+[Compiler 的 hooks](https://webpack.js.org/api/compiler-hooks/)
 
-### Compilation对象
+### Compilation 对象
 
-在插件模板中可以看到从`compiler`hooks钩子函数中可以获取到`compilation`对象，`compilation`就跟字面意思一样，可理解为`compiler`的一次构建行为、资源。
+在插件模板中可以看到从`compiler`hooks 钩子函数中可以获取到`compilation`对象，`compilation`就跟字面意思一样，可理解为`compiler`的一次构建行为、资源。
 比如在`webpack`开发模式中，每一次文件变化，`compiler`都会创建一次`compilation`。
 
-[Compilation的hooks](https://webpack.js.org/api/compilation-hooks/)
+[Compilation 的 hooks](https://webpack.js.org/api/compilation-hooks/)
 
 ### 挂载事件
 
@@ -70,7 +73,7 @@ class MyExampleWebpackPlugin {
 
 ## 分析需求，完成插件
 
-### 确定插件api
+### 确定插件 api
 
 从平时使用插件的方式，以及官方指导中可知，插件是一个可实例化的对象。
 
@@ -84,31 +87,32 @@ module.exports = {
 
 插件肯定是能够满足多种不同场景的使用，这可以通过在实例化插件的时候传参决定插件的工作方式。
 
-现在要从使用者的角度考虑这个插件的api应该是怎样的。
+现在要从使用者的角度考虑这个插件的 api 应该是怎样的。
 
-需求是**将一个chunk B的`Asset`注入到另一个chunk A中**，那到底是注入到chunk A文件中的哪个位置呢？当然这个是交给使用者决定。
-所以使用者需要在chunk A中输入一段特殊字符串作为占位符，然后插件会在运行过程中通过正则匹配将这占位符替换为chunk B的`Asset`名。
+需求是**将一个 chunk B 的`Asset`注入到另一个 chunk A 中**，那到底是注入到 chunk A 文件中的哪个位置呢？当然这个是交给使用者决定。
+所以使用者需要在 chunk A 中输入一段特殊字符串作为占位符，然后插件会在运行过程中通过正则匹配将这占位符替换为 chunk B 的`Asset`名。
 
-参数`options`应该是一个数组，这样才能支持多组不同的配置。`options`中的元素是一个对象，有`targetChunk`属性标记待注入的目标chunk，
-`rules`是一个数组，因为有可能需要将多个不同chunk的`Asset`注入到目标chunk中。`rules`中的元素是一个对象，该对象有两个属性，一个是
-`regex`是一个正则，用于匹配目标替换目标chunk的占位符，一个是`injectChunk`也就是需要注入的chunk。
-
+参数`options`应该是一个数组，这样才能支持多组不同的配置。`options`中的元素是一个对象，有`targetChunk`属性标记待注入的目标 chunk，
+`rules`是一个数组，因为有可能需要将多个不同 chunk 的`Asset`注入到目标 chunk 中。`rules`中的元素是一个对象，该对象有两个属性，一个是
+`regex`是一个正则，用于匹配目标替换目标 chunk 的占位符，一个是`injectChunk`也就是需要注入的 chunk。
 
 ```js
 new InjectChunkFilenamePlugin([
   {
     targetChunk: 'app',
-    rules: [{
-      regex: /inject-tag-lib/,
-      injectChunk: 'lib'
-    }]
+    rules: [
+      {
+        regex: /inject-tag-lib/,
+        injectChunk: 'lib'
+      }
+    ]
   }
 ])
 ```
 
 ### 完成插件基本结构
 
-1. 保存`options`参数，以便在apply方法中获通过`this.options`读取使用。
+1. 保存`options`参数，以便在 apply 方法中获通过`this.options`读取使用。
 
 ```js
 const PluginName = 'WebpackInjectChunkFilenamePlugin' // 插件名称，必须是独一无二的
@@ -149,7 +153,7 @@ class Plugin {
 翻了一遍文档，没发现哪里有对这方面做出详解的，所幸在此之前`webpack`就有无数的插件实现供我们参考。
 
 因为这个插件与[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)做的事情类似，
-所以在[html-webpack-plugin的源码中](https://github.com/jantimon/html-webpack-plugin/blob/master/index.js)可以发现，
+所以在[html-webpack-plugin 的源码中](https://github.com/jantimon/html-webpack-plugin/blob/master/index.js)可以发现，
 通过`compilation.assets`可以访问到本次编译输出的所有资源，通过以下方法可以改变输出资源，对应资源的`source`属性是一个函数，
 这个函数返回的是最终输出的文本结果，`size`属性也是一个函数，返回的是文本的大小。
 
@@ -160,7 +164,7 @@ compilation.assets[finalOutputName] = {
 }
 ```
 
-在[webpack源码的Compilation.js](https://github.com/webpack/webpack/blob/master/lib/Compilation.js)中也可以找到我们想要的属性、方法等。
+在[webpack 源码的 Compilation.js](https://github.com/webpack/webpack/blob/master/lib/Compilation.js)中也可以找到我们想要的属性、方法等。
 
 所以继续完善处理函数如下：
 

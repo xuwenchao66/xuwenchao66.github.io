@@ -1,7 +1,6 @@
 module.exports = [
   '',
   'koa-compose',
-  'write-webpack-plugin',
   'standardize-git-commit-message',
   'publish-npm-package',
   {
@@ -9,6 +8,8 @@ module.exports = [
     collapsable: false,
     children: [
       'webpack-introduction',
+      'webpack-write-a-loader',
+      'webpack-write-a-plugin',
       'webpack-practice-0',
       'webpack-practice-1',
       'webpack-practice-2',
