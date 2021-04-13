@@ -68,7 +68,7 @@ const resolve = (...args) => path.resolve(process.cwd(), ...args)
 module.exports = {
   entry: resolve('test', 'file-for-test.js'),
   output: {
-    filename: 'test.js',
+    filename: 'main.js',
     path: resolve('dist')
   },
   module: {
@@ -256,7 +256,57 @@ module.exports = {
 
 ## 单元测试
 
-// TODO
+`loader` 已经完成，接下来添加单元测试，来进一步保证 `loader` 的正确运行。
+
+- 安装、使用 [jest](https://jestjs.io/) 作为我们的测试框架。
+
+  ```sh
+  npm install --save-dev jest
+  ```
+
+- 配置 `jest`，添加 `jest.config.js` 配置文件。
+
+  这里声明了在 `test` 目录中，以 `.spec.js` 结尾的文件，都是单元测试文件。
+
+  ```js
+  module.exports = {
+    testMatch: ['**/test/**/*.spec.js']
+  }
+  ```
+
+- 编写单元测试。
+
+  新增 `test/index.spec.js` 文件。单元测试其实就是编写函数来判断方法的输入、输出是否符合预期，所以要想办法拿到 `webpack` 的构建结果。可以使用 `webpack` 的 [nodejs api](https://webpack.js.org/api/node/)，来达成这一目的。
+
+  下方的两个用例都使用了 `webpack` 的 `nodejs api` 来进行构建，在 [stats](https://webpack.js.org/configuration/stats/) 对象中可以获取输出的构建内容。
+
+  ```js
+  const webpack = require('webpack')
+
+  test('Replace correctly', async (done) => {
+    webpack(require('./webpack.config.js'), (err, stats) => {
+      const error = err || stats.hasErrors()
+      const json = stats.toJson({ source: true })
+      const output = json.modules[0].source
+      expect(output).toEqual(
+        expect.stringContaining('Hello replace with string replace with regex.')
+      )
+      done(error)
+    })
+  })
+
+  test('Invalid options', async (done) => {
+    const options = require('./webpack.config.js')
+    options.module.rules[0].use[0].options.rules = 1
+    webpack(options, (err, stats) => {
+      const error = err || stats.hasErrors()
+      expect(error).toBeTruthy()
+      done()
+    })
+  })
+  ```
+
+执行 `jest` 测试，可以看到两个用例通过。
 
 ## 参考
 
