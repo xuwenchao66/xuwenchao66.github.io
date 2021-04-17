@@ -3,6 +3,7 @@ module.exports = [
   'koa-compose',
   'standardize-git-commit-message',
   'publish-npm-package',
+  'write-a-webpack-plugin.md',
   {
     title: 'webpack',
     collapsable: false,
