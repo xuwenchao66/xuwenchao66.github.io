@@ -1,6 +1,6 @@
 # 一次贴近业务的 webpack 插件开发
 
-**注**：本文于 `2020` 年初编写，所以下方的相关代码都是基于 `webpack4` 的，下方使用的部分方法、属性在 `webpack5` 中已被弃用 or 不建议使用。而且这个插件涉及了特定场景，所以更推荐阅读基于 `webpack5` 的 [webpack plugin 开发入门](/blogs/webpack-write-a-plugin.html)。
+**注**：本文于 `2020` 年初编写，所以下方的相关代码都是基于 `webpack4` 的，下方使用的部分方法、属性在 `webpack5` 中已被弃用 or 不建议使用。而且这个插件涉及了特定场景，所以现在更推荐阅读基于 `webpack5` 的 [webpack plugin 开发入门](/blogs/webpack-write-a-plugin.html)。
 
 最近工作中有这么一个需求，需要将 `webpack` 最终构建出来的**文件目录名** + **文件名**注入到指定的 `chunk` 或者模板文件中。
 
