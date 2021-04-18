@@ -231,7 +231,7 @@ module.exports = {
 
   上方描述简单来说就是对 `options` 的参数进行了规则描述，比如 `"type": "object"`，就是声明该参数是一个对象， `"required": ["rules"]` 声明该对象必须存在 `rules` 属性，`"properties"` 就是对该对象其它属性进行描述。
 
-  具体可查看 [schema-utils](https://github.com/webpack/schema-utils) 说明，官方 `README` 没有并太详细 的指南，那么也可以从其 [单元测试用例 schema.json](https://github.com/webpack/schema-utils/blob/master/test/fixtures/schema.json) 中查看、参考更多不同的用法。
+  具体可查看 [schema-utils](https://github.com/webpack/schema-utils) 说明，官方 `README` 没有并没有太详细的指南，那么也可以从其 [单元测试用例 schema.json](https://github.com/webpack/schema-utils/blob/master/test/fixtures/schema.json) 中查看、参考更多不同的用法。
 
 - 调用校验方法。
 
