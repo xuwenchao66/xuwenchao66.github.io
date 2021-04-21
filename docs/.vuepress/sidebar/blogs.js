@@ -1,5 +1,6 @@
 module.exports = [
   '',
+  'what-is-ast',
   'koa-compose',
   'standardize-git-commit-message',
   'publish-npm-package',
