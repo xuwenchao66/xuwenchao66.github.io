@@ -152,7 +152,7 @@ console.log(ast.tokens)
 
 操作完 `AST` 之后就可以通过 [@babel/generator](https://babeljs.io/docs/en/babel-generator)，来将 `AST` 再转换为代码。
 
-修改测试脚本。
+安装完 `@babel/traverse` 和 `@babel/generator` 后，修改测试脚本。
 
 ```js
 const babelParser = require('@babel/parser')
