@@ -10,7 +10,11 @@ module.exports = {
     sidebarDepth: 3,
     lastUpdated: '上次更新'
   },
-  plugins: ['@vuepress/last-updated'],
+  plugins: [
+    '@vuepress/last-updated',
+    '@vuepress/back-to-top',
+    '@vuepress/medium-zoom'
+  ],
   alias: {
     '@design-patterns': resolvePath('./docs/design-patterns'),
     '@blogs': resolvePath('./docs/blogs')
