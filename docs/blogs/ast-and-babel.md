@@ -1,10 +1,10 @@
-# 什么是 AST
+# AST 与 Babel
 
-## 简介
+## 什么是 AST
 
 `AST`，abstract syntax tree（抽象语法树的缩写），就是代码的语法抽象、结构化的一种表现形式。
 
-如 `JavaScript` 中的这么一句赋值语句。
+如 `JavaScript` 中的这么一段代码。
 
 ```js
 const a = 1
@@ -15,28 +15,18 @@ const a = 1
 ```json
 {
   "type": "Program",
-  "start": 0,
-  "end": 11,
   "body": [
     {
       "type": "VariableDeclaration",
-      "start": 0,
-      "end": 11,
       "declarations": [
         {
           "type": "VariableDeclarator",
-          "start": 6,
-          "end": 11,
           "id": {
             "type": "Identifier",
-            "start": 6,
-            "end": 7,
             "name": "a"
           },
           "init": {
             "type": "Literal",
-            "start": 10,
-            "end": 11,
             "value": 1,
             "raw": "1"
           }
@@ -45,7 +35,7 @@ const a = 1
       "kind": "const"
     }
   ],
-  "sourceType": "module"
+  "sourceType": "script"
 }
 ```
 
@@ -73,7 +63,7 @@ const a = 1
 
 ### 词法分析
 
-首先是词法分析，也叫做扫描（scanner）。将我们的代码按照规则转换成一个个 `token`。
+首先是词法分析（Lexical Analysis），也叫做扫描（scanner）。将我们的代码按照规则转换成一个个 `token`。
 
 如。
 
@@ -81,26 +71,43 @@ const a = 1
 const a = 1
 ```
 
-结果词法分析后的表达可能是。
+词法分析后的表达可以如下。
 
-```txt
-Keyword(const) Identifier(a) Punctuator(=) Numeric(1)
+```json
+[
+  {
+    "type": "Keyword",
+    "value": "const"
+  },
+  {
+    "type": "Identifier",
+    "value": "a"
+  },
+  {
+    "type": "Punctuator",
+    "value": "="
+  },
+  {
+    "type": "Numeric",
+    "value": "1"
+  }
+]
 ```
 
-这个过程也可理解为分词，比如这么一句话 “今天天气真好啊。” 能正确理解这句话的前提，就是分词、断句。
+这个过程也可以称为分词，比如这么一句话 “今天天气真好啊。” 能正确理解这句话的前提，就是分词、断句。
 
 那么这句话可以断句为 “今天”，“天气”，“真好”，“啊”，“。”。
 
 ### 语法分析
 
-在词法分析之后，就开始语法分析，也叫做解析（parser）。它会将经过词法分析后得到的 `tokens` 根据语法规则转换成树的表达形式，也就是 `AST`，就像文章中的第一段示例代码一样。
+在词法分析之后，就开始语法分析（Syntactic Analysis），也叫做解析（parser）。它会将经过词法分析后得到的 `tokens` 根据语法规则转换成树的表达形式，也就是 `AST`，就像文章中的第一段示例代码一样。
 
 这里也可以理解为正确断句（词法分析）之后，才能根据每个词的意思，去理解整个句子的意思。
 
 推荐两个网站，能够在线将代码转换成 `tokens`、`AST`，方便我们快速验证、加深理解。
 
-1. [https://astexplorer.net/](https://astexplorer.net/)
 1. [https://esprima.org/demo/parse.html](https://esprima.org/demo/parse.html)
+2. [https://astexplorer.net/](https://astexplorer.net/)
 
 ## Babel 基本原理 & AST
 
@@ -231,14 +238,16 @@ console.log(newCode.code)
 
 经过上面的实践、分析也能了解 `Babel` 的基本原理了，它是基于 `AST`，通过下面步骤来实现各种功能。
 
-1. `Parse`（解析），将代码解析成 `AST`，解析阶段又分成词法分析和语法分析两个阶段。
-2. `Transform`（转换），遍历、访问 `AST`，对其进行修改。
-3. `Generate`（生成），将修改过后的 `AST` 转换、生成为代码。
+1. `Parse`（解析），将代码解析成 `AST`，解析阶段又分成以下两个阶段。
+   - 词法分析（Lexical Analysis）。
+   - 语法分析（Syntactic Analysis）。
+1. `Transform`（转换），遍历、访问 `AST`，对其进行修改。
+1. `Generate`（生成），将修改过后的 `AST` 转换、生成为代码。
 
 ## 参考
 
-1. [How JavaScript works: Parsing, Abstract Syntax Trees (ASTs) + 5 tips on how to minimize parse time](https://blog.sessionstack.com/how-javascript-works-parsing-abstract-syntax-trees-asts-5-tips-on-how-to-minimize-parse-time-abfcf7e8a0c8)
-2. [Babel 是如何读懂 JS 代码的](https://zhuanlan.zhihu.com/p/27289600)
-3. [AST for JavaScript developers](https://itnext.io/ast-for-javascript-developers-3e79aeb08343)
-4. [What is JavaScript AST, how to play with it?](https://stackoverflow.com/a/66194129/7627744)
-5. [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)
+1. [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)
+2. [How JavaScript works: Parsing, Abstract Syntax Trees (ASTs) + 5 tips on how to minimize parse time](https://blog.sessionstack.com/how-javascript-works-parsing-abstract-syntax-trees-asts-5-tips-on-how-to-minimize-parse-time-abfcf7e8a0c8)
+3. [Babel 是如何读懂 JS 代码的](https://zhuanlan.zhihu.com/p/27289600)
+4. [AST for JavaScript developers](https://itnext.io/ast-for-javascript-developers-3e79aeb08343)
+5. [What is JavaScript AST, how to play with it?](https://stackoverflow.com/a/66194129/7627744)
