@@ -62,7 +62,10 @@ Keyword(const) Identifier(a) Punctuator(=) Numeric(1)
 
 这里也可以理解为正确断句（词法分析）之后，才能根据每个词的意思，去理解整个句子的意思。
 
-推荐一个网站 [https://astexplorer.net/](https://astexplorer.net/)，能够在线将代码转换成 `AST`，方便我们快速验证、加深理解。
+推荐两个网站，能够在线将代码转换成 `tokens`、`AST`，方便我们快速验证、加深理解。
+
+1. [https://astexplorer.net/](https://astexplorer.net/)
+1. [https://esprima.org/demo/parse.html](https://esprima.org/demo/parse.html)
 
 ## Babel 基本原理 & AST
 
@@ -193,9 +196,9 @@ console.log(newCode.code)
 
 经过上面的实践、分析也能了解 `Babel` 的基本原理了，它是基于 `AST`，通过下面步骤来实现各种功能。
 
-1. 将代码解析成 `AST`。
-2. 遍历、访问 `AST`，对其进行修改。
-3. 将修改过后的 `AST` 重新转换为代码。
+1. `Parse`（解析），将代码解析成 `AST`，解析阶段又分成词法分析和语法分析两个阶段。
+2. `Transform`（转换），遍历、访问 `AST`，对其进行修改。
+3. `Generate`（生成），将修改过后的 `AST` 转换、生成为代码。
 
 ## 参考
 
@@ -204,3 +207,4 @@ console.log(newCode.code)
 3. [Babel 是如何读懂 JS 代码的](https://zhuanlan.zhihu.com/p/27289600)
 4. [AST for JavaScript developers](https://itnext.io/ast-for-javascript-developers-3e79aeb08343)
 5. [What is JavaScript AST, how to play with it?](https://stackoverflow.com/a/66194129/7627744)
+6. [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)
