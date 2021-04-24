@@ -2,7 +2,7 @@
 
 ## 简介
 
-`AST`，abstract syntax tree（抽象语法树的缩写），就是编程代码的语法抽象、结构化的一种表现形式。
+`AST`，abstract syntax tree（抽象语法树的缩写），就是代码的语法抽象、结构化的一种表现形式。
 
 如 `JavaScript` 中的这么一句赋值语句。
 
@@ -10,9 +10,44 @@
 const a = 1
 ```
 
-转换成 `AST` 后就像下面这样。
+转换成 `AST` 后可以是下面这种表达形式，可以是 `JSON`，可以是 `JavaScript` 中的 `object` 等树状的数据结构。
 
-![ast-tree](./img/ast-tree.png)
+```json
+{
+  "type": "Program",
+  "start": 0,
+  "end": 11,
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "start": 0,
+      "end": 11,
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 6,
+          "end": 11,
+          "id": {
+            "type": "Identifier",
+            "start": 6,
+            "end": 7,
+            "name": "a"
+          },
+          "init": {
+            "type": "Literal",
+            "start": 10,
+            "end": 11,
+            "value": 1,
+            "raw": "1"
+          }
+        }
+      ],
+      "kind": "const"
+    }
+  ],
+  "sourceType": "module"
+}
+```
 
 这种与编程语言无关的抽象、结构化表达，就是 `AST`。
 
@@ -58,7 +93,7 @@ Keyword(const) Identifier(a) Punctuator(=) Numeric(1)
 
 ### 语法分析
 
-在词法分析之后，就开始语法分析，也叫做解析（parser）。它会将经过词法分析后得到的 `tokens` 根据语法规则转换成树的表达形式，也就是 `AST`，就像文章中的第一张图一样。
+在词法分析之后，就开始语法分析，也叫做解析（parser）。它会将经过词法分析后得到的 `tokens` 根据语法规则转换成树的表达形式，也就是 `AST`，就像文章中的第一段示例代码一样。
 
 这里也可以理解为正确断句（词法分析）之后，才能根据每个词的意思，去理解整个句子的意思。
 
@@ -203,8 +238,7 @@ console.log(newCode.code)
 ## 参考
 
 1. [How JavaScript works: Parsing, Abstract Syntax Trees (ASTs) + 5 tips on how to minimize parse time](https://blog.sessionstack.com/how-javascript-works-parsing-abstract-syntax-trees-asts-5-tips-on-how-to-minimize-parse-time-abfcf7e8a0c8)
-2. [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
-3. [Babel 是如何读懂 JS 代码的](https://zhuanlan.zhihu.com/p/27289600)
-4. [AST for JavaScript developers](https://itnext.io/ast-for-javascript-developers-3e79aeb08343)
-5. [What is JavaScript AST, how to play with it?](https://stackoverflow.com/a/66194129/7627744)
-6. [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)
+2. [Babel 是如何读懂 JS 代码的](https://zhuanlan.zhihu.com/p/27289600)
+3. [AST for JavaScript developers](https://itnext.io/ast-for-javascript-developers-3e79aeb08343)
+4. [What is JavaScript AST, how to play with it?](https://stackoverflow.com/a/66194129/7627744)
+5. [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)
