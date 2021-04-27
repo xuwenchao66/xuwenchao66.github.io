@@ -6,6 +6,16 @@ module.exports = [
   'publish-npm-package',
   'write-a-webpack-plugin.md',
   {
+    title: 'babel',
+    collapsable: false,
+    children: ['babel', 'babel-practice', 'babel-plugin-development']
+  },
+  {
+    title: 'rollup',
+    collapsable: false,
+    children: ['rollup-why', 'rollup-basic-practice', 'rollup-build-library']
+  },
+  {
     title: 'webpack',
     collapsable: false,
     children: [
@@ -20,16 +30,6 @@ module.exports = [
       'webpack-practice-5',
       'webpack-practice-6'
     ]
-  },
-  {
-    title: 'babel',
-    collapsable: false,
-    children: ['babel', 'babel-practice']
-  },
-  {
-    title: 'rollup',
-    collapsable: false,
-    children: ['rollup-why', 'rollup-basic-practice', 'rollup-build-library']
   },
   {
     title: 'linux 常用命令',

@@ -241,8 +241,8 @@ console.log(newCode.code)
 1. `Parse`（解析），将代码解析成 `AST`，解析阶段又分成以下两个阶段。
    - 词法分析（Lexical Analysis）。
    - 语法分析（Syntactic Analysis）。
-1. `Transform`（转换），遍历、访问 `AST`，对其进行修改。
-1. `Generate`（生成），将修改过后的 `AST` 转换、生成为代码。
+2. `Transform`（转换），遍历、访问 `AST`，对其进行修改。
+3. `Generate`（生成），将修改过后的 `AST` 转换、生成为代码。
 
 ## 参考
 
