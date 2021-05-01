@@ -1,4 +1,5 @@
 const path = require('path')
+const markdownItTaskLists = require('markdown-it-task-lists')
 const resolvePath = (src) => path.resolve(process.cwd(), src)
 
 module.exports = {
@@ -18,6 +19,11 @@ module.exports = {
   alias: {
     '@design-patterns': resolvePath('./docs/design-patterns'),
     '@blogs': resolvePath('./docs/blogs')
+  },
+  markdown: {
+    extendMarkdown: (md) => {
+      md.use(markdownItTaskLists)
+    }
   },
   configureWebpack: {
     resolve: {

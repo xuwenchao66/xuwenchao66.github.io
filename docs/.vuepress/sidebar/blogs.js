@@ -1,6 +1,7 @@
 module.exports = [
   '',
   'ast-and-babel',
+  'ubuntu-checklist',
   'koa-compose',
   'standardize-git-commit-message',
   'publish-npm-package',
