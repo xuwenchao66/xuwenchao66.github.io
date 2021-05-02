@@ -8,7 +8,8 @@ linux 中很多快捷键都是通过 shift 组合来完成的，比如 ctrl + sh
 
 1. [linuxcommand.org](http://linuxcommand.org/lc3_learning_the_shell.php)
 2. [The Linux Command Line（中文版）](http://billie66.github.io/TLCL/book/)
-3. [Linux 的 shell 终端常用快捷键大全](https://zhuanlan.zhihu.com/p/29538650)
-4. [Linux 命令大全 | 菜鸟教程](https://www.runoob.com/linux/linux-command-manual.html)
-5. [Linux 常用命令集合](https://www.runoob.com/w3cnote/linux-common-command.html)
-6. [Linux 常用命令学习](https://www.runoob.com/w3cnote/linux-common-command-2.html)
+3. [Linux 命令大全(手册)](https://www.linuxcool.com/)
+4. [Linux 的 shell 终端常用快捷键大全](https://zhuanlan.zhihu.com/p/29538650)
+5. [Linux 命令大全 | 菜鸟教程](https://www.runoob.com/linux/linux-command-manual.html)
+6. [Linux 常用命令集合](https://www.runoob.com/w3cnote/linux-common-command.html)
+7. [Linux 常用命令学习](https://www.runoob.com/w3cnote/linux-common-command-2.html)
