@@ -25,7 +25,7 @@
    - feat：新功能
    - fix：bug 修复
    - docs：文档修改
-   - style: 不会修改代码运行逻辑的代码风格、格式改动（比如增、删加了空行、分号等等）
+   - style: 不会修改代码运行逻辑的代码风格、格式改动（比如增、删了空行、分号等等）
    - refactor：重构
    - perf：性能优化
    - test：添加、修改测试
@@ -56,7 +56,7 @@ footer 应该包含本次修改的 Breaking Changes 以及本次关闭了的 iss
 npm install -g @commitlint/cli @commitlint/config-conventional
 ```
 
-我们使用[@commitlint/cli](https://commitlint.js.org/)来校验 commit message，而[@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)约定式提交规范，是校验工具所遵循规范。我们也可以选择社区中的[其它规范](https://github.com/conventional-changelog/commitlint#shared-configuration)，甚至自定义规范。
+我们使用 [@commitlint/cli](https://commitlint.js.org/) 来校验 commit message，而 [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) 约定式提交规范，是校验工具所遵循规范。我们也可以选择社区中的[其它规范](https://github.com/conventional-changelog/commitlint#shared-configuration)，甚至自定义规范。
 
 ### 配置
 
@@ -78,7 +78,7 @@ module.exports = {
 
 `ignores`：如果数组里面的函数返回 true，则会跳过检测。一些非人工的 commit，比如 merge 或者 CI 中的自动 commit，有时候我们并不期望对其进行检测，则可使用该参数。
 
-更多配置项可查看[commitlint reference-configuration](https://commitlint.js.org/#/reference-configuration)。
+更多配置项可查看 [commitlint reference-configuration](https://commitlint.js.org/#/reference-configuration)。
 
 ### 测试
 
@@ -97,7 +97,7 @@ module.exports = {
 
 ### 使用 git hook 完成自动校验
 
-搭配[husky](https://typicode.github.io/husky/#/)，让检测自动化，提交的时候如果 message 不符合规范，会提交失败，保证了团队内的提交都必须符合规范。
+搭配 [husky](https://typicode.github.io/husky/#/)，让检测自动化，提交的时候如果 message 不符合规范，会提交失败，保证了团队内的提交都必须符合规范。
 
 1. 安装 husky。
 
@@ -135,9 +135,9 @@ module.exports = {
 
 ## 高效生成规范的 commit message
 
-规范是有了，但此时会发现写个规范的 commit message 太费劲，效率低而且不利于在团队中推广。
+规范是有了，但此时会发现写个规范的 commit message 太费劲了，效率低难以在团队中推广。
 
-所以可以使用[commitizen](https://github.com/commitizen/cz-cli)，以便能够通过简单交互操作就能写出规范的 commit message。
+可以使用 [commitizen](https://github.com/commitizen/cz-cli)，以便能够通过简单交互操作就能生成规范的 commit message。
 
 1. 安装 commitizen。
 
@@ -169,9 +169,9 @@ module.exports = {
    }
    ```
 
-安装、配置完成之后，执行`npm run commit`，就可以看见 terminal 中出现 commitizen 的交互界面，只要按照 terminal 中的描述一步步进行操作，就够生成规范的 commit message 了。
+安装、配置完成之后，执行 `npm run commit`，就可以看见 terminal 中出现 commitizen 的交互界面，只要按照 terminal 中的描述一步步进行操作，就够生成规范的 commit message 了。
 
-本文相关代码示例可从[https://github.com/xuwenchao66/standardize-git-commit-message](https://github.com/xuwenchao66/standardize-git-commit-message)中进行查阅。
+本文相关代码示例可从 [https://github.com/xuwenchao66/standardize-git-commit-message](https://github.com/xuwenchao66/standardize-git-commit-message) 中进行查阅。
 
 ## 参考
 
