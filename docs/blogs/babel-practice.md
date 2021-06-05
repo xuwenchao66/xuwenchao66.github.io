@@ -2,17 +2,17 @@
 
 在 [Babel 入门](/blogs/babel.html) 一文中我们已经对 `Babel` 有了基本的认知，下面会从不同场景，结合实践来讨论在工程中 `Babel` 的推荐实践方案。
 
-下面的 demo 代码都可以从[https://github.com/xuwenchao66/babel-practice](https://github.com/xuwenchao66/babel-practice)中进行查阅。
+下面的 `demo` 代码都可以从 [https://github.com/xuwenchao66/babel-practice](https://github.com/xuwenchao66/babel-practice) 中进行查阅。
 
 ## 搭建简易实践环境
 
-因为本文只讲 `Babel`，所以不会去涉及别的构建工具，而是尽可能的用 `Babel` 官方工具链来完成本次相关 demo。当我们了解 `Babel` 本身之后，搭配其他工具使用自然也是水到渠成。
+因为本文只讲 `Babel`，所以不会去涉及别的构建工具，而是尽可能的用 `Babel` 官方工具链来完成本次相关 `demo`。当我们了解 `Babel` 本身之后，搭配其他工具使用自然也是水到渠成。
 
 这里使用官方的 `@babel/cli` 来对代码进行编译输出， 参考 [https://babeljs.io/setup#installation](https://babeljs.io/setup#installation)。
 
 - 安装依赖
 
-  使用`npm init`初始化一个项目之后，执行下方命令安装使用 `@babel/cli` 的必要依赖。
+  使用 `npm init` 初始化一个项目之后，执行下方命令安装使用 `@babel/cli` 的必要依赖。
 
   ```sh
   npm install --save-dev @babel/core @babel/cli
@@ -50,11 +50,11 @@ const array = [1, 2, 3]
 array.includes(1)
 ```
 
-这里可以看到编译出来的代码与原有的基本一样，这也进一步验证了，`Babel` 只负责代码转换，其它功能都需要具体配置、插件来实现。
+这里可以看到编译出来的代码与原有的基本一样，这也进一步验证了，`Babel` 只负责代码转换，其它功能都需要具体的插件来实现。
 
 ## 开发应用的实践、分析
 
-大多数开发者在工作中都涉及应用开发。当我们开发一个 web 应用的时候，希望代码能在较低版本的浏览器中运行，但又希望使用新的语法糖。这时候就能通过 `Babel` 来完成这一任务。
+大多数开发者在工作中都涉及应用开发。当我们开发一个 `web` 应用的时候，希望代码也能在较低版本的浏览器中运行，但又希望使用新的语法糖。这时候就能通过 `Babel` 来完成这一任务。
 
 ### 安装配置 @babel/preset-env
 
@@ -68,7 +68,7 @@ array.includes(1)
 
 - 新建 `babel.config.json`，配置使用 `@babel/preset-env`。
 
-  修改 babel.config.json 配置文件。
+  修改 `babel.config.json` 配置文件。
 
   ```json
   {
@@ -91,12 +91,12 @@ array.includes(1)
 
 - 配置 `@babel/preset-env` 的 `useBuiltIns` 和 `corejs` 选项。
 
-  通过 [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) 的文档可知，自动 `polyfill` 是一个可选项，默认是不打开的，需要通过[useBuiltIns](https://babeljs.io/docs/en/babel-preset-env#usebuiltins)这个参数来告诉 @babel/preset-env 应该如何处理 polyfill 。
+  通过 [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) 的文档可知，自动 `polyfill` 是一个可选项，默认是不打开的，需要通过 [useBuiltIns](https://babeljs.io/docs/en/babel-preset-env#usebuiltins) 这个参数来告诉 `@babel/preset-env` 应该如何处理 `polyfill` 。
 
   useBuiltIns 有三个可选值，分别是。
 
   - `false`， 默认值就是 `false`，即不会自动添加 `polyfill`。
-  - `'entry'`， 需要在应用入口中分别手动引入一次 `core-js` 和 `regenerator-runtime/runtime` ，然后就会根据所配置的浏览器环境引入对应的所有 `polyfill`，不管你有没有用上。
+  - `'entry'`， 需要在应用入口中引入一次 `core-js` 和 `regenerator-runtime/runtime` ，然后就会根据所配置的浏览器环境引入对应的**所有** `polyfill`，不管你有没有用上。
   - `'usage'`，无需任何手动引入，就会自动按需引入 `polyfill`。
 
   所以这里选择更加智能的 `'usage'` 。

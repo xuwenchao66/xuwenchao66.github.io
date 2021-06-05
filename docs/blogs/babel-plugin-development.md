@@ -4,7 +4,7 @@
 
 下面将介绍如何写一个 `Babel` 插件，以及开发前的一些前置知识要点。
 
-因为 `Babel` 是基于 `AST` 的，所以这里推荐阅读 [AST 与 Babel](/blogs/ast-and-babel.html)，去了解什么是 `AST` 先。
+因为 `Babel` 是基于 `AST` 的，所以这里推荐阅读 [AST 与 Babel](/blogs/ast-and-babel.html)，先了解什么是 `AST` 。
 
 ## Babel 基本原理
 
@@ -102,7 +102,7 @@ export default function(babel) {
 
 该函数会返回一个 `visitor` 对象，该对象的属性方法，在 `Babel` 执行时就会调用 `visitor` 里面对应的方法，并传入当前路径信息 `path` 和状态 `state`，`state` 中可以拿到调用插件时的参数。
 
-因为需求删除 `console.log` 的方法调用，所以我们在 `visitor` 中指定访问调用表达式 [CallExpression](https://babeljs.io/docs/en/babel-types#callexpression)。更多的 `AST` 节点类型可从 [@babel/types](https://babeljs.io/docs/en/babel-types) 中查看。
+因为要删除 `console.log` 的方法调用，所以我们在 `visitor` 中指定访问调用表达式 [CallExpression](https://babeljs.io/docs/en/babel-types#callexpression)。更多的 `AST` 节点类型可从 [@babel/types](https://babeljs.io/docs/en/babel-types) 中查看。
 
 新建 `src/index.js`，插件基本代码骨架如下。
 
@@ -132,7 +132,7 @@ module.exports = function(babel) {
 
 - 编写单元测试。
 
-  新建 `__tests__/index.spec.js`。下方 `case` 表示期望把源码 `source` 经过编译、插件作用后转换为删了 `console.log` 调用的代码 `expect`。
+  新建 `__tests__/index.spec.js`。下方 `case` 表示期望把源码 `source` 经过编译后转换为删了 `console.log` 调用的代码。
 
   `babel-plugin-tester` 的详细用法请看 [https://github.com/kentcdodds/babel-plugin-tester](https://github.com/kentcdodds/babel-plugin-tester)。
 
@@ -181,7 +181,7 @@ module.exports = function(babel) {
 
 因为 `AST` 的节点 `node` 就是一个对象，所以可以像访问一个对象一样访问 `node` 的属性。
 
-`AST` 的属性多且复杂，那么可以在 [https://astexplorer.net/](https://astexplorer.net/) 上先看看所需要操作的 `AST` 的节点大概长什么样，或者参考一些已有的插件源码，配合断点调试，这样在初期开发插件的时候才不会太盲目。
+`AST` 的属性多且复杂，那么可以在 [https://astexplorer.net/](https://astexplorer.net/) 上先看看所需要操作的 `AST` 的节点大概长什么样，或者参考一些已有的插件源码，配合断点调试，这样在插件开发初期的才不会太盲目。
 
 了解到了 `node` 节点有一个 `callee` 属性表示调用者，`callee.object` 就是调用方法的所属对象， `callee.property` 就是调用的属性方法。所以我们可以使用下方的条件判断来找出 `console.log` 调用，最后通过 `path.remove` 来将该 `node` 删除。
 
@@ -207,8 +207,8 @@ module.exports = function(babel) {
 
 再次执行 `npm test`，单元测试通过。
 
-像上面的 `node` 类型判断，`Babel` 也是提供了一些实用的工具来帮我我们快速开发。无论是 `console` 还是 `log` 都是标识符（Identifier），所以可以用 [@babel/types](https://babeljs.io/docs/en/babel-types)
-`isIdentifier` 来简化验证 `node` 的代码。
+像上面的 `node` 类型判断，`Babel` 也是提供了一些实用的工具来帮我我们快速开发。无论是 `console` 还是 `log` 都属于标识符（`Identifier`），所以可以用 [@babel/types](https://babeljs.io/docs/en/babel-types)
+的 `isIdentifier` 方法来简化验证 `node` 的代码。
 
 代码可以调整为。
 
@@ -232,7 +232,7 @@ module.exports = function({ types: t }) {
 
 本文相关的代码只是希望起到抛砖引玉的作用，简述一个插件的开发基本流程而已。
 
-如果想要了解更多 `Babel` 插件开发的相关信息，推荐阅读 [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)，这里有更详细的介绍，包括了插件的基本以及最佳实践。
+如果想要了解更多 `Babel` 插件开发的相关信息，推荐阅读 [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)，这里有更详细的介绍，包括了插件的基本实现以及最佳实践推荐。
 
 ## 参考
 
