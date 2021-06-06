@@ -2,7 +2,7 @@ module.exports = [
   '',
   'ast-and-babel',
   'ubuntu-checklist',
-  'koa-compose',
+  'koa-compose-source-learning',
   'standardize-git-commit-message',
   'publish-npm-package',
   'write-a-webpack-plugin.md',
