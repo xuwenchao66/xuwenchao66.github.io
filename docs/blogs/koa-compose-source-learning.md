@@ -77,7 +77,7 @@ module.exports = compose
 - 再次回想“洋葱模型”，这跟嵌套函数的调用栈表达形式非常相似，其实 `compose` 就是利用了函数的递归调用。
 - 根据中间件模型 `async (context, next) => {}`，可以构造出基本的递归函数调用。
 - 因为 `compose` 函数中能够使用 `async` 语法糖的，也就是函数的返回值都必须是 `Promise`，所以无论是函数的返回值、还是错误都分别通过 `Promise.resolve`、`Promise.reject` 来进行值包装。
-- 通过一个 `index` 来记录已经执行的中间件下标，在递归中传入上下文对象 `context` 以及中间件执行控制函数 `next`，这里通过 传入 `dispatch.bind(null, i + 1)` 来实现顺序执行以及控制。
+- 递归、顺序执行中间件，在递归函数中传入上下文对象 `context` 以及中间件执行控制函数 `next`，这里通过传入 `dispatch.bind(null, i + 1)` 来实现顺序执行以及外部控制。
 
 ```js
 const compose = (middleware) => {
@@ -87,13 +87,9 @@ const compose = (middleware) => {
     throw new TypeError('每个中间件必须是一个函数')
 
   return (context, next) => {
-    // 记录最后执行的中间件 index
-    let index = -1
     // 执行第一个中间件
     return dispatch(0)
     function dispatch(i) {
-      // 更新已执行的中间件 index
-      index = i
       // 获取待执行的中间件，如果中间件执行完了则执行高阶函数传入的 next
       const fn = i === middleware.length ? next : middleware[i]
       // 如果没有中间件函数需要执行了，终止递归
@@ -127,9 +123,11 @@ module.exports = compose
 }
 ```
 
-观察现有的函数中变量 `index` 与 `i` 的关系，可得 `index` 在每次递归开头始终是比 `i` 小 1 的，虽然才赋值为相等。
+观察现有的函数中的变量 `i` 在**每一个** `dispatch` 函数调用栈中，随着调用栈的深度加深 +1，理想调用状态下，`dispatch` 的参数 `i`，等于其上层 `dispatch` 的参数 `i` + 1。
 
-如果在一个函数中多次调用 `next`，就可能出现类似下方的调用栈情况。
+所以可添加一个 `index` 变量，来记录最后执行的中间件下标，让 `i` 与 `index` 每次开始执行递归时保持 `index + 1 === i` 的关系，如果这个关系不成立了，说明 `next` 在一个中间件中被调用了两次。
+
+比如，在一个函数中多次调用 `next`，就可能出现类似下方的调用栈情况。
 
 ```js
 (context, next) => {
@@ -140,7 +138,6 @@ module.exports = compose
     dispatch(2)
     dispatch(2)
   }
-
 }
 ```
 
