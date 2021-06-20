@@ -38,7 +38,7 @@
 
 ### plugins
 
-Babel 只是一个编译器，它就像一个纯函数 `const babel = code => code;` 一样，不做任何事情，解析然后生成一样的代码。所以你需要添加、使用插件 `plugins` 来做其它事情。
+`Babel` 只是一个编译器，它就像一个纯函数 `const babel = code => code` 一样，只负责解析然后生成代码。所以需要添加、使用插件 `plugins` 来做其它事情。
 
 比如想要将箭头函数转换成 `function`，就可以使用官方的 [@babel/plugin-transform-arrow-functions](https://babeljs.io/docs/en/babel-plugin-transform-arrow-functions)。
 
@@ -73,7 +73,7 @@ import 'regenerator-runtime/runtime'
 
 ### @babel/preset-env
 
-[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) 是一个预置集合，它能够根据目标浏览器环境（可配置的 `targets`）**自动**进行语法转换、甚至添加 `polyfill`，而无需进行复杂的配置、管理。
+[@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) 是一个预置集合，它能够根据目标浏览器环境（可配置的 [targets](https://babeljs.io/docs/en/babel-preset-env#targets)）**自动**进行语法转换、甚至添加 `polyfill`，而无需进行复杂的配置、管理。
 
 常见配置如下：
 
@@ -94,43 +94,49 @@ import 'regenerator-runtime/runtime'
 
 该参数值可以是 `"usage"`，`"entry"`，`false` 其中之一，默认是 `false`。
 
-`useBuiltIns`: `'entry'`，会把应用入口引入的完整 `polyfills` 语句替换为目标环境所需要的所有 `polyfill` 引用语句，比如：
+- `useBuiltIns`: `'entry'`。
 
-输入:
+  会把应用入口引入的完整 `polyfills` 语句替换为目标环境所需要的**所有** `polyfill` 引用语句，比如：
 
-```js
-import 'core-js'
-```
+  输入:
 
-输出：
+  ```js
+  import 'core-js'
+  ```
 
-```js
-import 'core-js/modules/es.string.pad-start'
-import 'core-js/modules/es.string.pad-end'
-```
+  输出：
 
-`useBuiltIns: 'usage'`，无需手动引入`polyfill`，会按需引入使用到的 `API`，比如：
+  ```js
+  import 'core-js/modules/es.string.pad-start'
+  import 'core-js/modules/es.string.pad-end'
+  ```
 
-输入:
+- `useBuiltIns: 'usage'`。
 
-```js
-var a = new Promise()
-```
+  无需手动引入 `polyfill`，根据代码支持环境参数 [targets](https://babeljs.io/docs/en/babel-preset-env#targets)，会按需引入使用到的 `API`，比如：
 
-输出：
+  输入:
 
-```js
-import 'core-js/modules/es.promise'
-var a = new Promise()
-```
+  ```js
+  var a = new Promise()
+  ```
 
-`useBuiltIns: false`，不会自动引入`polyfill`。
+  输出：
+
+  ```js
+  import 'core-js/modules/es.promise'
+  var a = new Promise()
+  ```
+
+- `useBuiltIns: false`
+
+  不会自动引入 `polyfill`。
 
 ### @babel/runtime & @babel/plugin-transform-runtime
 
-[@babel/runtime](https://babeljs.io/docs/en/next/babel-runtime.html) 包含了 `Babel` 模块运行时帮助函数以及 `regenerator-runtime`。
+[@babel/runtime](https://babeljs.io/docs/en/next/babel-runtime.html) 包含了 `Babel` 模块运行时的帮助函数以及 `regenerator-runtime`。
 
-[@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) 这是一个能够复用 `Babel` 注入的帮助函数的插件，通过它能够节省代码大小。这里的**transform-runtime**就指的是 `@babel/runtime`，所以使用 `@babel/plugin-transform-runtime` 之前也必须安装 `@babel/runtime`。
+[@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) 这是一个能够复用 `Babel` 注入的帮助函数的插件，通过它能够节省代码大小。这里的 `transform-runtime` 指的就是 `@babel/runtime`，所以使用 `@babel/plugin-transform-runtime` 之前也必须安装 `@babel/runtime`。
 
 看完官方简单的介绍应该还有点模糊，下面用官方的例子再来解释下。
 
@@ -158,7 +164,7 @@ var Person = function Person() {
 
 1. 污染了全局变量。
 
-2. 假如工具库 `A` 和工具库 `B` 中都编译出了 `_classCallCheck` 就会产生了冗余重复的代码，增加了文件体积。
+2. 假如工具库 `A` 和工具库 `B` 中都编译出了 `_classCallCheck` 就会产生了重复代码，增加了脚本文件体积。
 
 如果我们使用了 `transform-runtime` 之后编译成如下代码：
 
