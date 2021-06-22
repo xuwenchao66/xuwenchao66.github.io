@@ -6,7 +6,7 @@
 
 ## 搭建简易实践环境
 
-因为本文只讲 `Babel`，所以不会去涉及别的构建工具，而是尽可能的用 `Babel` 官方工具链来完成本次相关 `demo`。当我们了解 `Babel` 本身之后，搭配其他工具使用自然也是水到渠成。
+因为本文只讲 `Babel`，所以不会去涉及别的构建工具，而是尽可能的用 `Babel` 官方工具链来完成相关 `demo`。当我们了解 `Babel` 本身之后，搭配其他工具使用自然也是水到渠成。
 
 这里使用官方的 `@babel/cli` 来对代码进行编译输出， 参考 [https://babeljs.io/setup#installation](https://babeljs.io/setup#installation)。
 
@@ -54,7 +54,7 @@ array.includes(1)
 
 ## 开发应用的实践、分析
 
-大多数开发者在工作中都涉及应用开发。当我们开发一个 `web` 应用的时候，希望代码也能在较低版本的浏览器中运行，但又希望使用新的语法糖。这时候就能通过 `Babel` 来完成这一任务。
+大多数开发者在工作中都涉及应用开发。当我们开发一个 `web` 应用的时候，希望代码也能在较低版本的浏览器中运行，与此同时也希望使用新的语法糖。这时候就能通过 `Babel` 来完成这一任务。
 
 ### 安装配置 @babel/preset-env
 
@@ -93,9 +93,9 @@ array.includes(1)
 
   通过 [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env) 的文档可知，自动 `polyfill` 是一个可选项，默认是不打开的，需要通过 [useBuiltIns](https://babeljs.io/docs/en/babel-preset-env#usebuiltins) 这个参数来告诉 `@babel/preset-env` 应该如何处理 `polyfill` 。
 
-  useBuiltIns 有三个可选值，分别是。
+  `useBuiltIns` 有三个可选值，分别是。
 
-  - `false`， 默认值就是 `false`，即不会自动添加 `polyfill`。
+  - `false`， 默认值，即不会自动添加 `polyfill`。
   - `'entry'`， 需要在应用入口中引入一次 `core-js` 和 `regenerator-runtime/runtime` ，然后就会根据所配置的浏览器环境引入对应的**所有** `polyfill`，不管你有没有用上。
   - `'usage'`，无需任何手动引入，就会自动按需引入 `polyfill`。
 
@@ -180,7 +180,7 @@ class Test {
 }
 ```
 
-编译后变成，头部的几个函数 `_classCallCheck`、`_defineProperties`、`_createClass` 就是 `Babel` 的帮助函数，如果一个库有多个文件，那么就会产生许多重复的帮助函数代码，让使用方的应用体积变大。
+编译后变成，头部的几个函数 `_classCallCheck`、`_defineProperties`、`_createClass` 就是 `Babel` 的帮助函数，如果一个库有多个文件，那么就会产生许多重复的帮助函数代码，让使应用脚本体积变大。
 
 ```js
 function _classCallCheck(instance, Constructor) {
@@ -310,7 +310,7 @@ var Test = /*#__PURE__*/ (function() {
   })()
   ```
 
-  可以看到 `Babel` 的帮助函数不再是直接编译进来，而是变成了一句句导入语句。而且 `polyfill` 的导入也不再是直接导入挂载至全局，而是声明为一个变量别名，通过别名来引用。
+  可以看到 `Babel` 的帮助函数不再是直接编译进来，而是变成了导入语句。而且 `polyfill` 的导入也不再是直接导入挂载至全局，而是声明为一个变量别名，通过别名来引用。
 
   这样代码体积以及全局污染的问题就解决了。
 

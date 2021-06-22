@@ -1,8 +1,8 @@
 # Babel 插件开发入门
 
-`Babel` 是一个**通用**的 `JavaScript` 编译器，它可以将源码转换成源码，不同的具体功能由不同的插件来实现，比如 [@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) 以及 `UI` 库中将代码转换成按需引用的 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)。
+`Babel` 是一个**通用**的 `JavaScript` 编译器，它可以将源码转换成源码，不同的功能具体由不同的插件来实现，比如 [@babel/plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) 以及 `UI` 库中将代码转换成按需引用的 [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)。
 
-下面将介绍如何写一个 `Babel` 插件，以及开发前的一些前置知识要点。
+下面将抛砖引玉，介绍如何写一个 `Babel` 插件，以及开发前的一些前置知识要点。
 
 因为 `Babel` 是基于 `AST` 的，所以这里推荐阅读 [AST 与 Babel](/blogs/ast-and-babel.html)，先了解什么是 `AST` 。
 
@@ -100,7 +100,7 @@ export default function(babel) {
 
 函数传入了 [babel](https://github.com/babel/babel/tree/master/packages/babel-core) 对象，里面也包含了一些常用的对象、方法，比如可用于判断节点类型的 `babel.types`。
 
-该函数会返回一个 `visitor` 对象，该对象的属性方法，在 `Babel` 执行时就会调用 `visitor` 里面对应的方法，并传入当前路径信息 `path` 和状态 `state`，`state` 中可以拿到调用插件时的参数。
+该函数会返回一个 `visitor` 对象，在 `Babel` 执行时就会调用 `visitor` 里面对应的方法，并传入当前路径信息 `path` 和状态 `state`，`state` 中可以拿到调用插件时的参数。
 
 因为要删除 `console.log` 的方法调用，所以我们在 `visitor` 中指定访问调用表达式 [CallExpression](https://babeljs.io/docs/en/babel-types#callexpression)。更多的 `AST` 节点类型可从 [@babel/types](https://babeljs.io/docs/en/babel-types) 中查看。
 
@@ -171,7 +171,7 @@ module.exports = function(babel) {
   }
   ```
 
-配置完成后执行 `npm test` 可以看见单元测试运行起来，并且上方的 `case` 不通过。
+配置完成后执行 `npm test` 可以看见单元测试运行起来，并且上方的 `case` 没有通过。
 
 ### 完善插件逻辑
 
@@ -181,9 +181,9 @@ module.exports = function(babel) {
 
 因为 `AST` 的节点 `node` 就是一个对象，所以可以像访问一个对象一样访问 `node` 的属性。
 
-`AST` 的属性多且复杂，那么可以在 [https://astexplorer.net/](https://astexplorer.net/) 上先看看所需要操作的 `AST` 的节点大概长什么样，或者参考一些已有的插件源码，配合断点调试，这样在插件开发初期的才不会太盲目。
+`AST` 的属性多且复杂，那么可以在 [https://astexplorer.net/](https://astexplorer.net/) 上先看看所需要操作的 `AST` 的节点大概长什么样，或者参考一些已有的插件源码，配合断点调试，这样在插件开发初期就不会太盲目。
 
-了解到了 `node` 节点有一个 `callee` 属性表示调用者，`callee.object` 就是调用方法的所属对象， `callee.property` 就是调用的属性方法。所以我们可以使用下方的条件判断来找出 `console.log` 调用，最后通过 `path.remove` 来将该 `node` 删除。
+了解到了 `node` 节点有一个 `callee` 属性表示所调用的方法，`callee.object` 就是方法的所属对象， `callee.property` 就是调用的属性方法。所以我们可以使用下方的条件判断来找出 `console.log` 调用，最后通过 `path.remove` 来将该 `node` 删除。
 
 ```js
 module.exports = function(babel) {
@@ -207,7 +207,7 @@ module.exports = function(babel) {
 
 再次执行 `npm test`，单元测试通过。
 
-像上面的 `node` 类型判断，`Babel` 也是提供了一些实用的工具来帮我我们快速开发。无论是 `console` 还是 `log` 都属于标识符（`Identifier`），所以可以用 [@babel/types](https://babeljs.io/docs/en/babel-types)
+像上面的 `node` 类型判断，`Babel` 提供了一些实用的工具来简化开发。无论是 `console` 还是 `log` 都属于标识符（`Identifier`），所以可以用 [@babel/types](https://babeljs.io/docs/en/babel-types)
 的 `isIdentifier` 方法来简化验证 `node` 的代码。
 
 代码可以调整为。
@@ -230,9 +230,7 @@ module.exports = function({ types: t }) {
 }
 ```
 
-本文相关的代码只是希望起到抛砖引玉的作用，简述一个插件的开发基本流程而已。
-
-如果想要了解更多 `Babel` 插件开发的相关信息，推荐阅读 [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)，这里有更详细的介绍，包括了插件的基本实现以及最佳实践推荐。
+如果想要了解更多 `Babel` 插件开发的相关资料，推荐阅读 [Babel Plugin Handbook](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md)，这里有更详细的介绍，包括了插件的基本实现以及最佳实践推荐。
 
 ## 参考
 
