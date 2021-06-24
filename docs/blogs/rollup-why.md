@@ -1,22 +1,22 @@
-# 为什么选择 rollup
+# 为什么选择 Rollup
 
-## rollup 简介
+## Rollup 简介
 
-如对前端工程化稍有关注，那么我们经常可以看见 `rollup` 的身影，比如 `vue`、`react` 以及最近出来的构建工具 `vite`，它们有都用到 `rollup`。
+在前端开发中经常可以看见 `Rollup` 的身影，比如 `vue`、`react` 以及最近出来的 `vite`，它们的构建工具都有用到 `Rollup`。
 
-简单来说 `rollup` 就是一个 JavaScript 模块构建工具，那么它与我们更为熟悉的 `webpack` 有什么区别呢？下面将介绍、分析 `rollup` 的特性，及其应用场景。
+简单来说 `Rollup` 就是一个 JavaScript 模块构建工具。那么它与我们更为熟悉的 `webpack` 有什么区别呢？下面将介绍、分析 `Rollup` 的特性，及其应用场景。
 
-## rollup 特性
+## Rollup 特性
 
-`rollup` 使用的是 `ES6` 标准的模块机制，也就是常见的 `import`、`export`。能支持导入、导出 `ES` 模块，同时支持导出 `common.js`、`AMD`、`IIEF` 等模块、脚本。
+`Rollup` 使用的是 `ES6` 标准的模块机制，也就是常见的 `import`、`export`。能支持导入、导出 `ES` 模块，同时支持导出 `common.js`、`AMD`、`IIEF` 等模块、脚本。
 
-## rollup 优势
+## Rollup 优势
 
-`rollup` 不仅使用 `ES` 模块，而且会对代码进行静态分析（ES 模块的静态特性，也是静态分析的前提），在构建、编译阶段分析、移除未使用到的代码，也就是所谓的 [tree-shaking](https://webpack.js.org/guides/tree-shaking/#root)。
+`Rollup` 不仅使用 `ES` 模块，而且会对代码进行静态分析（`ES` 模块的静态特性，也是静态分析的前提），在构建、编译阶段分析、移除未使用到的代码，也就是所谓的 [tree-shaking](https://webpack.js.org/guides/tree-shaking/#root)。
 
-这也是为什么 `rollup` 的构建输出体积更小、速度更快的原因。
+这也是为什么 `Rollup` 的构建输出体积更小、速度更快的原因。
 
-### ES 模块与 commonjs 模块的不同、优劣
+### ES 模块与 CommonJS 模块的不同、优劣
 
 #### ES 模块
 
@@ -26,9 +26,9 @@
 2. `import` 的模块名只能是字符串常量，不能是变量。
 3. 通过 `import` 绑定声明的变量无法重新赋值。
 
-#### commonjs 模块
+#### CommonJS 模块
 
-与 `ES` 模块相反的是，`commonjs` 是动态的，允许更加灵活的使用，比如条件 `require`、`require` 模块名使用变量等，如下。
+与 `ES` 模块相反的是，`CommonJS` 是动态的，允许更加灵活的使用，比如条件 `require`、`require` 模块名使用变量等，如下。
 
 ```js
 const module_name = 'lodash'
@@ -39,17 +39,17 @@ if (true) {
 }
 ```
 
-但这种便利也让工具难以在编译阶段就能确定模块之间的依赖，不利于静态分析，导致难以进行 `tree-shaking` 等优化。所以从这个角度看 `ES` 模块机制是要优秀于 `commonjs` 等动态模块机制。
+但这种便利也让工具难以在编译阶段就能确定模块之间的依赖，不利于静态分析，一定程度地限制了 `tree-shaking` 优化。所以从这个角度看 `ES` 模块机制是要优于 `CommonJS` 等动态模块机制的。
 
-## rollup or webpack
+## Rollup or webpack
 
 两者有以下几点对比。
 
-1. `rollup` 支持输出 `ES` 模块，`webpack` 暂不不支持。目前，2020 年 3 月 13 日，从官网中可知 `webpack` 的 [输出 ES 模块](https://webpack.js.org/configuration/output/#librarytarget-module)目前还是实验性特性。所以 `rollup` 构建速度更快、输出体积更小，更容易进行 `tree-shaking` 等优化。
+1. `Rollup` 支持输出 `ES` 模块，`webpack` 暂不支持。目前，2020 年 3 月 13 日，从官网中可知 `webpack` 的 [输出 ES 模块](https://webpack.js.org/configuration/output/#librarytarget-module)目前还是实验性特性。所以使用 `Rollup` 构建速度更快、输出体积更小，更容易进行 `tree-shaking` 。
 
 2. `webpack` 有更成熟、完整的生态，对于多数主流框架、应用基础开发都有成熟的工具链。
 
-综上，如果是开发一个应用，那么应该选择 `webpack`，其生态能满足应用开发复杂、多变的需求。而开发一个库时，功能往往比较单一，加之库的体积是使用者所关注的重要一点，所以使用 `rollup` 更合适。
+综上，如果是开发一个应用，那么应该选择 `webpack`，其生态能满足应用开发复杂、多变的需求。而开发一个库时，功能往往比较单一，加之库的体积是使用者所关注的重要一点，所以使用 `Rollup` 更合适。
 
 ## 参考
 
