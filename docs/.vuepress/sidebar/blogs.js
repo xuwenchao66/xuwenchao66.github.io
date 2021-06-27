@@ -3,6 +3,7 @@ module.exports = [
   'ast-and-babel',
   'ubuntu-checklist',
   'koa-compose-source-learning',
+  'eslint-custom-rules',
   'standardize-git-commit-message',
   'publish-npm-package',
   'write-a-webpack-plugin.md',
