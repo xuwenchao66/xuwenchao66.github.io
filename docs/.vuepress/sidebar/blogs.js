@@ -1,5 +1,4 @@
 module.exports = [
-  '',
   'ast-and-babel',
   'ubuntu-checklist',
   'koa-compose-source-learning',

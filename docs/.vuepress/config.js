@@ -3,7 +3,7 @@ const markdownItTaskLists = require('markdown-it-task-lists')
 const resolvePath = (src) => path.resolve(process.cwd(), src)
 
 module.exports = {
-  title: `xuwenchao' blog`,
+  title: `xuwenchao' blogs`,
   description: '徐文超个人博客',
   themeConfig: {
     nav: require('./nav'),
