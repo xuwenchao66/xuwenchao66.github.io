@@ -58,7 +58,7 @@ export default {
   npm i @rollup/plugin-babel -D
   ```
 
-- 配置 @rollup/plugin-babel。
+- 配置 `@rollup/plugin-babel`。
 
   修改配置文件。
 
@@ -164,9 +164,9 @@ export default {
 
 ### 使用 external 优化体积
 
-通过观察可以发现，明明只写了一点代码，输出了的文件却有 100 多 kb。这是因为 `rollup` 默认将引用到的外部依赖都打包至 `bundle` 中了，比如这里用到的 `lodash`、 `Babel` 的帮助函数、`polyfill` 等。
+通过观察可以发现，明明只写了一点代码，输出了的文件却有 100 多 `kb`。这是因为 `rollup` 默认将引用到的外部依赖都打包至 `bundle` 中了，比如这里用到的 `lodash`、 `Babel` 的帮助函数、`polyfill` 等。
 
-需要构建代码的变多，不仅影响构建速度，还会出现重复的代码，造成没必要的体积变大。
+构建代码的变多，不仅影响构建速度，还会出现重复的代码，造成没必要的脚本体积变大。
 
 为了解决这个问题，构建工具中的 [external](https://rollupjs.org/guide/en/#external) 这个配置项可用来告诉构建工具哪些依赖是外置依赖，这样构建工具只会留下外部依赖的 `import` 语句，不会真正输出到 `bundle` 之中。
 
@@ -186,9 +186,9 @@ import _sum from 'lodash/sum';
 ...
 ```
 
-那我们是不是需要每增加一个依赖，就手动改 `external` 项，把依赖一个个设为 `external`？
+那我们是不是需要每增加一个依赖，就手动改 `external` 项，把依赖一个个设为 `external` 呢？
 
-当然不是，`external` 也可以是一个正则数组，可以通过读取 `package.json` 的 `dependencies`、`peerDependencies` 里面的依赖字段，来实现自动的 `external`。
+当然不是，`external` 也可以是一个正则数组，可以通过读取 `package.json` 的 `dependencies`、`peerDependencies` 里面的依赖字段，来实现动态的 `external`。
 
 修改配置，添加如下代码。
 
