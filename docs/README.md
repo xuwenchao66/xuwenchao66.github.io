@@ -1,5 +1,7 @@
 # 徐文超 - 前端开发工程师
 
+简历在线版本 [https://xuwenchao.site/](https://xuwenchao.site/)
+
 ## 基本信息
 
 - 手机：13631230892
