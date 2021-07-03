@@ -1,8 +1,6 @@
 # webpack 实践(0): 项目基础搭建
 
-在[webpack 入门](/blogs/webpack-introduction.html)一文中我们已经对 webpack 有一个基本的了解了，`webpack` 实践系列文章将从零开始一步步搭建一个基于 `webpack5` 和 `vue3` 的应用开发、生产环境。
-
-下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
+在 [webpack 入门](/blogs/webpack-introduction.html) 一文中我们已经对 `webpack` 有一个基本的了解了，`webpack` 实践系列文章将从零开始一步步搭建一个基于 `webpack5` 和 `vue3` 的应用开发、生产环境。
 
 ## 项目初始化
 
@@ -60,9 +58,9 @@ app.mount('#app')
 
 ## 添加基础配置
 
-在[webpack 入门](/blogs/webpack-introduction.html)中了解到，webpack 默认不能识别 `html` 文件，现在是需要将指定的 `js` 文件构建后自动绑定注入到指定的 `html` 中。
+在 [webpack 入门](/blogs/webpack-introduction.html) 中了解到，`webpack` 默认不能识别 `html` 文件，现在需要将指定的 `js` 文件构建后自动注入到指定的 `html` 中。
 
-所以需要通过[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)插件来实现。
+可通过 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 插件来实现。
 
 ### 安装 html-webpack-plugin
 
@@ -70,7 +68,7 @@ app.mount('#app')
 npm i --save-dev html-webpack-plugin
 ```
 
-### 添加 `webpack.config.js`
+### 添加 webpack.config.js
 
 ```js
 const path = require('path')
@@ -91,9 +89,9 @@ module.exports = {
 }
 ```
 
-配置中除了指定了 `entry` 、 `output` 之外，还使用了 `HtmlWebpackPlugin`，插件的 `template` 选项用来告诉 `HtmlWebpackPlugin` 该使用哪个 `html` 模版文件来生成 html bundle。
+配置中除了指定了 `entry` 、 `output` 之外，还使用了 `HtmlWebpackPlugin`，插件的 `template` 选项用来告诉 `HtmlWebpackPlugin` 该使用哪个 `HTML` 模版文件来生成 `HTML bundle`。
 
-`HtmlWebpackPlugin` 的更多用法可查看[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)。
+`HtmlWebpackPlugin` 的更多用法可查看 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)。
 
 ### 添加 npm scripts 构建命令
 
@@ -107,6 +105,8 @@ module.exports = {
 ```
 
 执行 `npm run build:app`，可以看到生成的 `dist` 目录中输出了 `html` 文件，在浏览器打开该文件，可看见浏览器渲染了 `h1` 标题，内容为 `Hello webpack & vue.`，至此基础配置完成。
+
+本文实践代码可从 [https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice) 中查阅。
 
 ## 参考
 

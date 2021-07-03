@@ -1,10 +1,8 @@
 # webpack 实践(5): 使用 Babel
 
-查看构建出来的脚本可发现，里面存在不少 `const` 等 `ES6+` 的语法糖，为了让代码能够在老旧的浏览器中正确运行，需要使用 `Babel` 来将代码编译成 `ES5` 以及添加 `polyfill`。
+查看构建出来的脚本可发现，里面存在不少 `const` 等 `ES6+` 的语法糖，为了让代码能够在低版本浏览器中正确运行，需要使用 `Babel` 来将代码编译成 `ES5` 以及添加 `polyfill`。
 
-可从[Babel 实践应用](/blogs/babel-practice.html) 一文中了解了构建应用时的 `Babel` 推荐配置。
-
-下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
+可从 [Babel 实践应用](/blogs/babel-practice.html) 一文中了解了构建应用时的 `Babel` 推荐配置。
 
 ## 使用 ES6+ 语法糖
 
@@ -83,7 +81,9 @@ module.exports = {
 }
 ```
 
-最后执行构建，查看输出脚本，新增的 `log` 函数都被编译成 `ES5` 的语法了。
+最后执行构建，查看输出脚本，新增的 `log` 函数都被编译成 `ES5` 的代码了。
+
+本文实践代码可从 [https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice) 中查阅。
 
 ## 参考
 

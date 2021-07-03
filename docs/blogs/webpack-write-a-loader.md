@@ -1,14 +1,12 @@
 # webpack loader 开发入门
 
-本文相关实践代码可从[https://github.com/xuwenchao66/webpack-loader-practice](https://github.com/xuwenchao66/webpack-loader-practice)中查阅。
-
 ## webpack loader 简介 & 基本原理
 
 通过 [webpack loaders](https://webpack.js.org/concepts/#loaders) 中可以了解到，`webpack` 默认只能识别 `JavaScript` 以及 `JSON` 文件。
 
 如果要让 `webpack` 识别其它类型的文件，那么就要使用对应的 `loader` 来将文件转化为 `webpack` 的 [modules](https://webpack.js.org/concepts/modules/)。在 [Supported Module Types](https://webpack.js.org/concepts/modules/#supported-module-types) 中了解到 `webpack` 的 `module` 可以是 `ES`模块、 `CommonJS` 模块等等。
 
-再结合 [raw-loader](https://github.com/webpack-contrib/raw-loader)，该插件能让 `webpack` 载入 `txt` 文本文件（现在不推荐使用了，因为 `webpack5` 内置 [asset-modules](https://webpack.js.org/guides/asset-modules/)）。从它的源码片段中可见，其核心就是读取 `txt` 文件之后，将文件内容包裹、返回 `ES` 或者 `CommonJS` 模块。
+再结合 [raw-loader](https://github.com/webpack-contrib/raw-loader)，该插件能让 `webpack` 加载文件转化为 `String`（现在不推荐使用了，因为 `webpack5` 内置 [asset-modules](https://webpack.js.org/guides/asset-modules/)）。从它的源码片段中可见，其核心就是读取文件之后，将文件内容包裹、返回 `ES` 或者 `CommonJS` 模块。
 
 ```js
 export default function rawLoader(source) {
@@ -24,12 +22,12 @@ export default function rawLoader(source) {
 }
 ```
 
-经过上面的简单分析可以得出以下几点：
+经过上面的简单分析可以得出一个 `webpack loader` 有以下特点：
 
 - 在 `loader` 中能够获取到一个字符串 `source`，该字符串就是文件的内容。
 - `loader` 中需要返回一个 `webpack` 所能识别的 `module`。
 
-知道这几点之后，经常使用的 `css-loader`、`vue-loader`，似乎也不再那么神秘。我们能够自由改变、组装 `source`，在日后开发中又多了一个能够解决问题的思考方向。
+知道这几点之后，经常使用的 `css-loader`、`vue-loader`，似乎也不再那么神秘。我们能够自由改变、组装 `source`，在日后开发中又多了一个能够解决问题的方向了。
 
 ## loader 基本骨架
 
@@ -86,13 +84,13 @@ module.exports = {
 }
 ```
 
-执行 `webpack` 构建，可以看见控制台输出了 `replaceLoader` 字样，说明 `loader` 成功调用。
+执行 `webpack` 构建，可以看见控制台输出了 `replaceLoader` 字样，说明 `loader` 调用成功。
 
 ## 完善 loader 逻辑
 
 ### 参数设计
 
-该 `loader` 其实就是调用 `JavaScript` 的 `replace` 方法，所以参数的基本属性会有两个，分别是。
+该 `loader` 其实就是调用 `JavaScript` 的 `replace` 方法，所以参数的基本属性会有两个，分别是：
 
 - `search`： 替换源目标，可以是字符串、也可以是一个正则。
 - `replace`：替换结果，可以是一个字符串，也可以是一个函数。
@@ -193,7 +191,7 @@ module.exports = {
 
 ## 参数校验
 
-为了能够让使用者在参数传入错误时给出准确的错误提示，这里使用官方推荐的 [schema-utils](https://github.com/webpack/schema-utils) 来对传入的 `options` 进行检验。
+为了能够让使用者在参数传入错误时给出准确的错误提示，这里使用官方推荐的 [schema-utils](https://github.com/webpack/schema-utils) 来对传入的 `options` 进行校验。
 
 - 安装依赖。
 
@@ -201,7 +199,7 @@ module.exports = {
   npm install schema-utils --save
   ```
 
-- 添加检验规则描述文件 `/src/schema.json`。
+- 添加校验规则描述文件 `/src/schema.json`。
 
   ```json
   {
@@ -231,7 +229,7 @@ module.exports = {
 
   上方描述简单来说就是对 `options` 的参数进行了规则描述，比如 `"type": "object"`，就是声明该参数是一个对象， `"required": ["rules"]` 声明该对象必须存在 `rules` 属性，`"properties"` 就是对该对象其它属性进行描述。
 
-  具体可查看 [schema-utils](https://github.com/webpack/schema-utils) 说明，官方 `README` 没有并没有太详细的指南，那么也可以从其 [单元测试用例 schema.json](https://github.com/webpack/schema-utils/blob/master/test/fixtures/schema.json) 中查看、参考更多不同的用法。
+  具体用法可查看 [schema-utils](https://github.com/webpack/schema-utils) 说明，官方 `README` 并没有太详细的说明，那么也可以从其 [单元测试用例 schema.json](https://github.com/webpack/schema-utils/blob/master/test/fixtures/schema.json) 中查看、参考更多不同的用法。
 
 - 调用校验方法。
 
@@ -276,9 +274,9 @@ module.exports = {
 
 - 编写单元测试。
 
-  新增 `test/index.spec.js` 文件。单元测试其实就是编写函数来判断方法的输入、输出是否符合预期，所以要想办法拿到 `webpack` 的构建结果。可以使用 `webpack` 的 [nodejs api](https://webpack.js.org/api/node/)，来达成这一目的。
+  新增 `test/index.spec.js` 文件。单元测试其实就是编写函数来判断方法的输入、输出是否符合预期，所以要想办法拿到 `webpack` 的构建结果。可以使用 `webpack` 的 [Node Interface](https://webpack.js.org/api/node/)，来达成这一目的。
 
-  下方的两个用例都使用了 `webpack` 的 `nodejs api` 来进行构建，在 [stats](https://webpack.js.org/configuration/stats/) 对象中可以获取输出的构建内容。
+  下方的两个用例都使用了 `webpack` 的 `Node Interface` 来进行构建，在 [stats](https://webpack.js.org/configuration/stats/) 对象中可以获取输出的构建内容。
 
   ```js
   const webpack = require('webpack')
@@ -307,6 +305,8 @@ module.exports = {
   ```
 
 执行 `jest` 测试，可以看到两个用例通过。
+
+本文相关实践代码可从 [https://github.com/xuwenchao66/webpack-loader-practice](https://github.com/xuwenchao66/webpack-loader-practice) 中查阅。
 
 ## 参考
 

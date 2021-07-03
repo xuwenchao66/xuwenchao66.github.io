@@ -1,8 +1,6 @@
 # webpack 实践(6): 使用 ESLint
 
-为了能够尽早发现低级错误以及统一代码风格，一个项目中 `ESLint` 也是少不了的。
-
-下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
+为了能够尽早发现低级错误以及统一代码风格，一个项目中 `ESLint` 也是必不可少的。
 
 ## 安装依赖
 
@@ -51,10 +49,14 @@ module.exports = {
 }
 ```
 
-- `context`： eslint 作用的根目录
-- `extensions`： extensions 声明了的后缀文件都会被 eslint 所检测。
+部分参数解析：
 
-故意弄一个不符合规范的错误，然后执行构建，控制台输出对应错误， eslint 生效。
+- `context`： `ESLint` 作用的根目录
+- `extensions`： `extensions` 声明了的后缀文件都会被 `ESLint` 所检测。
+
+故意弄一个不符合规范的错误，然后执行构建，控制台输出对应错误， `ESLint` 生效。
+
+本文实践代码可从 [https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice) 中查阅。
 
 ## 参考
 

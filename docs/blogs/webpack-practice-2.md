@@ -4,8 +4,6 @@
 
 `webpack-dev-server` 能够监听文件改变，然后自动执行构建、刷新页面，支持热更新，而且它启动后是将构建结果保存在内存中，所以读取速度更快。
 
-下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
-
 ## 安装相关依赖
 
 ```sh
@@ -14,9 +12,9 @@ npm i npm install --save-dev webpack-dev-server webpack-merge -D
 
 ## 拆分配置文件
 
-加入了 `DevServer` 之后，会发现配置中生产环境与开发环境有不少不同点，比如开发环境中需要添加便于调试的 `source-map`，`devServer` 配置等等，而生产环境需要对 bundle 进行压缩、构建优化。
+加入了 `DevServer` 之后，会发现配置中生产环境与开发环境有不少不同点，比如开发环境中需要添加便于调试的 `source-map`，`devServer` 配置等等，而生产环境需要对 `bundle` 进行压缩、构建优化。
 
-所以为了将两者区分，便于维护、复用。下面将配置文件拆分为以下三个 js 文件，都放在新建的 `build` 目录下，然后通过 [webpack-merge](https://github.com/survivejs/webpack-merge) 来组合它们。
+所以为了让两者区分，便于维护、复用，下面将配置文件拆分为以下三个 `js` 文件，都放在新建的 `build` 目录下，然后通过 [webpack-merge](https://github.com/survivejs/webpack-merge) 来组合它们。
 
 `build` 目录下新建 `utils.js`，用来存放通用的脚本辅助方法，如下。
 
@@ -90,8 +88,10 @@ module.exports = {
   })
   ```
 
+  部分参数解析：
+
   - `devtool`：用于决定如何生成 `source maps`，为了方便调试，在开发环境中一般都会开启。
-  - `target`： 告诉 webpack 编译环境目标，这里得声明为 `web`，否则如果项目中存在 `.browserslistrc` 配置文件，热更新可能会失效。
+  - `target`： 告诉 `webpack` 编译环境目标，这里得声明为 `web`，否则如果项目中存在 `.browserslistrc` 配置文件，热更新可能会失效。
   - `devServer`： 该选项决定了 `webpack-dev-server` 的表现。
 
     - `contentBase`：静态服务器根目录。
@@ -99,7 +99,7 @@ module.exports = {
     - `compress`：是否启用 `gzip` 压缩服务器响应的静态资源。
     - `port`：静态服务器的监听端口。
 
-    更多选项请看[webpack dev-server](https://webpack.js.org/configuration/dev-server)
+    更多选项请看 [webpack dev-server](https://webpack.js.org/configuration/dev-server)
 
 ## 调整 npm scripts
 
@@ -111,7 +111,9 @@ module.exports = {
 }
 ```
 
-配置成功后执行 `npm run dev:app`，启动 `DevServer`，浏览器访问 `http://localhost:3000/`，可访问应用，而且修改代码，页面会进行热更新。
+配置成功后执行 `npm run dev:app`，启动 `DevServer`，浏览器访问 `http://localhost:3000/`，可访问当前应用，修改代码，页面会进行热更新。
+
+本文实践代码可从 [https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
 
 ## 参考
 

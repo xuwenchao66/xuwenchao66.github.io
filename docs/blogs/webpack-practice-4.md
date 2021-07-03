@@ -1,7 +1,5 @@
 # webpack 实践(4): 给应用添加样式
 
-下方实践代码可从[https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice)中查阅。
-
 ## 使用 css
 
 给应用加上样式就是使用 `css`，同样的为了让 `webpack` 能够识别 `css` 文件，需要添加对应的 `loader`。
@@ -32,14 +30,14 @@ import './style/index.css'
 createApp(App).mount('#app')
 ```
 
-### 安装 style-loader css-loader
+### 安装 style-loader & css-loader
 
 ```sh
 npm install --save-dev style-loader css-loader
 ```
 
-- [style-loader](https://github.com/webpack-contrib/style-loader)，能把 `css` 插入 `dom` 中，比如将含有 `css` 样式的 `<style></style>` 标签，通过 `js` 插入 `html` 中。
-- [css-loader](https://github.com/webpack-contrib/css-loader)，让 `webpack` 能够加载 `css` 文件，比如 `import css from "file.css";`。
+- [style-loader](https://github.com/webpack-contrib/style-loader) 能把 `css` 插入 `dom` 中，比如将含有 `css` 样式的 `<style></style>` 标签，通过 `js` 插入 `html` 中。
+- [css-loader](https://github.com/webpack-contrib/css-loader) 让 `webpack` 能够加载 `css` 文件，比如 `import css from "file.css";`。
 
 两者经常搭配使用。
 
@@ -130,7 +128,7 @@ module.exports = {
 
 ## 使用 postcss
 
-在一些老旧的浏览器中，部分 `css` 属性需要添加前缀才能生效，比如 `-webkit-transform: rotate(180deg);`，如果这些都需要手动一个个码，那可太累了。
+在一些低版本的浏览器中，部分 `css` 属性需要添加前缀才能生效，比如 `-webkit-transform: rotate(180deg);`，如果这些都需要手动一个个添加，那可太累了。
 
 为此可以使用 `postcss` 将这些工作自动化。
 
@@ -183,6 +181,8 @@ IE 10
 ```
 
 再次 `npm run dev:app`，可见 `transform` 属性已自动添加前缀。
+
+本文实践代码可从 [https://github.com/xuwenchao66/webpack-practice](https://github.com/xuwenchao66/webpack-practice) 中查阅。
 
 ## 参考
 
