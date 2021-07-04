@@ -1,8 +1,8 @@
 # linux 常用命令
 
-因为 linux 和 mac os 都是 unix like 的系统，所以双方的快捷键大同小异，加之 linux 和 mac 在开发中都常会用到，所以这里也顺便提及一些 mac 下的快捷键。
+因为 `linux` 和 `mac os` 都是 `unix like` 的系统，所以双方的快捷键大同小异，加之 `linux` 和 `mac` 在开发中都常会用到，所以这里也顺便记录一些 `mac` 下的快捷键。
 
-linux 中很多快捷键都是通过 shift 组合来完成的，比如 ctrl + shift + w、ctrl + shift + t，而在 mac 中很多则是则是通过 command（win）来实现相同快捷操作，比如 command + w（关闭终端），command + t（新建 tab）。所以在记住了 linux 下的组合快捷键之后，在 mac 下多数命令都可以通过替换为 command 来完成相同操作。
+`linux` 中很多快捷键都是通过 `shift` 组合来完成的，比如 `ctrl + shift + w`、`ctrl + shift + t`，而在 `mac` 中很多则是则是通过 `command（win）`来实现相同快捷操作，比如 `command + w`（关闭终端），`command + t`（新建 tab）。所以在记住了 `linux` 下的组合快捷键之后，在 `mac` 下多数命令都可以通过替换为 `command` 来完成相同操作。
 
 ## 参考
 

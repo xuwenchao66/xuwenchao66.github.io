@@ -2,12 +2,12 @@
 
 ## 搜索历史命令，输入关键字，其余匹配自动补全
 
-ctrl + r （reverse-i-search，根据关键字反向查询历史记录）
+`ctrl + r` （`reverse-i-search`，根据关键字反向查询历史记录）
 
 ## 查看历史,有对应编号
 
-- history
-- history n，n 为查看最近的 n 条
+- `history`
+- `history n`，`n` 为查看最近的 `n`
 
 ## 按编号执行历史命令
 
@@ -19,8 +19,8 @@ ctrl + r （reverse-i-search，根据关键字反向查询历史记录）
 
 ## 查看上条命令
 
-ctrl + p（previous）或 ⬆️
+`ctrl + p（previous）` 或方向上键
 
 ## 查看下条命令
 
-ctrl + n（next）或 ⬇️
+`ctrl + n（next）` 或方向下键
