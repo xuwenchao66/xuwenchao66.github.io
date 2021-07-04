@@ -4,7 +4,6 @@
 
 ## 基本信息
 
-- 手机：13631230892
 - github：[https://github.com/xuwenchao66](https://github.com/xuwenchao66)
 - 博客：[https://xuwenchao.site/blogs/](https://xuwenchao.site/blogs/)
 - 邮箱：842390367@qq.com
