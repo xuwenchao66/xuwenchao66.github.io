@@ -4,7 +4,7 @@
 
 ## 更新源码
 
-假设需求需要在输出文本中换行补充 Updated!!! 。那么如下修改 index.js 源码。
+假设需求需要在输出文本中换行补充 `Updated!!!` 。那么如下修改 `index.js` 源码。
 
 ```js
 const Koa = require('koa')
@@ -39,9 +39,9 @@ docker run -d -p 8000:8000 hello-docker
 docker: Error response from daemon: driver failed programming external connectivity on endpoint priceless_jepsen (fdf5a00787d29dcddbfa7bcf85b0ac5ec8ed3d5253060053c421050c1f64c101): Bind for 0.0.0.0:8000 failed: port is already allocated.
 ```
 
-是因为我们上次运行的 hello-docker 容器还在运行中，占用着 8000 端口。所以我们应该替换旧的容器。
+是因为我们上次运行的 `hello-docker` 容器还在运行中，占用着 8000 端口。所以我们应该替换旧的容器。
 
-1. 首先查看获取正在运行的 hello-docker 容器的 id。
+1. 首先查看获取正在运行的 `hello-docker` 容器的 `id`。
 
    执行。
 
@@ -55,9 +55,9 @@ docker: Error response from daemon: driver failed programming external connectiv
    docker container ls
    ```
 
-   根据容器名称等信息获取对应的容器 id。
+   根据容器名称等信息获取对应的容器 `id`。
 
-2. 根据 id 停止正在运行的容器。
+2. 根据 `id` 停止正在运行的容器。
 
    ```sh
    docker stop <容器id>
