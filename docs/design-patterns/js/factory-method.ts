@@ -7,16 +7,6 @@ const platforms = {
 interface IButton {
   render(): void
 }
-// 抽象工厂
-abstract class DialogFactory {
-  abstract createButton(): IButton
-  abstract platform: string
-  render() {
-    console.log(`Render on ${this.platform}.`)
-    const button = this.createButton()
-    button.render()
-  }
-}
 // 具体产品
 class IOSButton implements IButton {
   render() {
@@ -27,6 +17,16 @@ class IOSButton implements IButton {
 class AndroidButton implements IButton {
   render() {
     console.log('Rendering android button.')
+  }
+}
+// 抽象工厂
+abstract class DialogFactory {
+  abstract createButton(): IButton
+  abstract platform: string
+  render() {
+    console.log(`Render on ${this.platform}.`)
+    const button = this.createButton()
+    button.render()
   }
 }
 // 具体工厂
