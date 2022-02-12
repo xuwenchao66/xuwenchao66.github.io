@@ -93,34 +93,31 @@ ctx.pressed()
 /* JavaScript作为动态语言，可以很方便的通过委托来实现状态模式，我们用call绑定了函数运行时的this，
 而无需像传统面向对象语言一样让一个对象持有另一个对象 */
 
-const FMS = {
+const FSM = {
   off: {
     pressed() {
       console.log('弱光')
-      this.setState(FMS.weak)
+      this.setState(FSM.weak)
     }
   },
   weak: {
     pressed() {
       console.log('强光')
-      this.setState(FMS.strong)
+      this.setState(FSM.strong)
     }
   },
   strong: {
     pressed() {
       console.log('关灯')
-      this.setState(FMS.off)
+      this.setState(FSM.off)
     }
   }
 }
 
-type keys = keyof typeof FMS
-type values = typeof FMS[keys]
-
 class Context2 {
-  currentState: values
+  currentState: typeof FSM[keyof typeof FSM]
   constructor() {
-    this.currentState = FMS.off
+    this.currentState = FSM.off
   }
   pressed() {
     this.currentState.pressed.call(this)
