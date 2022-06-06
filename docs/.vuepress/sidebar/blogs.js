@@ -1,5 +1,6 @@
 module.exports = [
   'ast-and-babel',
+  'whistle-plugin-practice',
   'ubuntu-checklist',
   'koa-compose-source-learning',
   'eslint-custom-rules',
