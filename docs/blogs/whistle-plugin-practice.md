@@ -58,6 +58,21 @@ npm i -g whistle.modify
 
 ## whistle 插件开发
 
+下面将实现一个用于修改请求响应的 `whistle` 插件，详情可查看 [whistle.modify](https://www.npmjs.com/package/whistle.modify)。
+
+### 插件功能分析
+
+1. 首先是 `Rule` 的增删改查，`Rule` 用于描述是如何匹配请求，匹配之后该如何修改这个请求的响应等。
+2. 当 `Rule` 变多之后，会变得难以查找，为此增加了 `Group`，用于分类管理 `Rule`。一个 `Group` 相当于一个文件夹，里面包含了多个 `Rule`。
+   为此这里还有 `Group` 的增删改查。
+
+### 技术实现任务拆解
+
+## whistle 插件还能做什么
+
+1. 简化、统一开发团队的环境切换
+2. 请求数据解密
+
 ## 参考
 
 1. [whistle](http://wproxy.org/whistle/)
