@@ -1,5 +1,7 @@
 # 重构：改善既有代码的设计
 
+[https://book.douban.com/subject/4262627/](https://book.douban.com/subject/4262627/)
+
 ## 第 1 章 重构，第一个示例
 
 1. 提炼函数，函数职责尽可能单一。
@@ -769,7 +771,7 @@
       transferMembers() {}
       deleteMembers() {}
     }
-    
+
     class Member extends Department {}
     ```
 
