@@ -2,27 +2,27 @@
 
 ## 基本信息
 
-- github：[https://github.com/xuwenchao66](https://github.com/xuwenchao66)
 - 博客：[https://xuwenchao.site/blogs/](https://xuwenchao.site/blogs/)
+- github：[https://github.com/xuwenchao66](https://github.com/xuwenchao66)
 - 邮箱：842390367@qq.com
 - 微信：yueliang309408
 - 出生日期：1993.06.06
-- 现居：深圳
 
 ## 个人概况
 
-1. 熟悉 JavaScript/TypeScript/CSS/HTML 等技术，并有一定的实践经验。
-2. 熟悉 Vue 技术栈应用、组件开发。
-3. 熟悉 Webpack、Rollup 等构建工具的应用。
-4. 熟悉前端组件化、模块化开发。
-5. 了解 Node.js 的基本使用。
-6. 良好的计算机网络 ，算法基础。
-7. 掌握常用的设计模式，并能合理应用。
-8. 有良好的学习习惯，在个人博客 [https://xuwenchao.site/blogs/](https://xuwenchao.site/blogs/) 中总结、输出。
+1. 良好的计算机、前端基础。
+2. 熟悉 React/Vue 技术栈的应用开发。
+3. 良好的组件化、模块化开发经验以及工程化思想。
+4. 掌握常用的设计模式，并能在开发中合理应用。
+5. 了解 Node.js 的基本应用。
 
 ## 工作经历
 
-### 深圳虾皮信息科技有限公司（2022.01.05 - 至今）
+### 深圳虾皮信息科技有限公司（2022.01.05 - 2022.09.23）
+
+1. 基于 React、React Native 的虚拟商品 C 端以及 Admin 的业务模块开发。
+2. 虚拟商品的订阅业务负责人。
+3. 基于 Electron 的虚拟商品业务辅助工具客户端开发。
 
 ### 腾讯音乐娱乐（深圳）有限公司（2021.09.13 - 2022.01.04）
 
@@ -50,11 +50,7 @@
 
    新部门启动新项目，总结以往在金山文档时的基础工程架构的不足，搭建新的基于 Lerna 的 Monorepo 项目，实现统一的 Script 、以及 Vue Component 开发、构建方案，分离数据与视图模块、统一工程规范、提升开发效能。
 
-5. 自动化的方案调研以及落地，优化组内工作流程。
-
-   基于 GitLab CI 以及 Docker，接入公司 GitLab，实现组件的自动构建、发布。
-
-6. 金山文档 PC、移动端部分功能开发与维护。
+5. 金山文档 PC、移动端部分功能开发与维护。
 
 ### 珠海市旗云科技有限公司 (2018.05.02 - 2018.07.27)
 
