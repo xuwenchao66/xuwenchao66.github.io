@@ -1,1 +1,6 @@
-module.exports = ['refactoring', 'why-elite-time-controlled', 'human-weakness']
+module.exports = [
+  'refactoring',
+  'clean-architecture',
+  'why-elite-time-controlled',
+  'human-weakness'
+]
