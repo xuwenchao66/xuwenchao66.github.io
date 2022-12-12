@@ -156,6 +156,8 @@
 
 ### 第 11 章 DIP：依赖反转原则
 
+- 关于控制反转和依赖注入，可以看这里[浅谈控制反转与依赖注入](https://zhuanlan.zhihu.com/p/33492169)，通俗易懂、有实例。
+
 - 高层策略性的代码不应该依赖实现底层细节的代码，恰恰相反，那些实现底层细节的代码应该依赖高层策略性的代码。
 
 - 如果想要设计一个灵活的系统，在源代码层次的依赖关系中就应该多引用抽象类型，而非具体实现。
@@ -191,3 +193,29 @@
 - 下图为组件聚合张力图，架构就是在追寻其中的平衡，优秀的软件架构师应该能在上述三角张力区域中定位一个最适合目前研发团队状态的位置，同时也会根据时间不停调整。
 
 ![component-aggregate-tension.png](./img/component-aggregate-tension.png)
+
+### 第 14 章 组件耦合
+
+- 无依赖环原则。组件依赖关系图中不应该出现环。循环依赖增加了组件耦合，使得组件难以维护、测试、发布。
+
+- 每周构建。要求所有人定期将自己所做的变更提交，进行统一构建。（定期集成构建，可提前发现问题，将集成时可能遇到的问题化大为小。）
+
+- 消除循环依赖。将研发项目划分为一些可单独发布的组件，这些组件可以交由单人或者某一组程序员来独立完成。
+
+- 打破循环依赖。
+
+  如下图，Entities 组件中的 User 类使用了 Authorizer 组件中的 Permissions 类。 这就形成了一个 循环依赖关系。
+
+  ![circular-dependencies.png](./img/circular-dependencies.png)
+
+  - 解决方式 1：可应用依赖反转原则（DIP）。
+
+    创建一个 User 类需要使用的接口， 然后将这个接口放入 Entities 组件， 并在 Authorizer 组件中继承它。这样就将 Entities 与 Authorizer 之间的依赖关系反转了，自然也就打破了循环依赖关系。
+
+    ![break-circular-dependencies-1.png](./img/break-circular-dependencies-1.png)
+
+  - 解决方式 2：创建一个新的公共组件。
+
+    让 Entities 与 Authorize 这两个组件都依赖于它。将现有的这两个组件中互相依赖的类全部放入新组件。
+
+    ![break-circular-dependencies-2.png](./img/break-circular-dependencies-2.png)
