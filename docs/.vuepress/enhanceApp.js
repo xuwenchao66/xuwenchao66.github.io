@@ -1,5 +1,3 @@
-import './style.css'
-
 const redirectList = {
   '/': '/blogs/ast-and-babel/',
   '/blogs/': '/blogs/ast-and-babel/',

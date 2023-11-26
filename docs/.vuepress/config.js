@@ -1,6 +1,6 @@
 const path = require('path')
 const markdownItTaskLists = require('markdown-it-task-lists')
-const resolvePath = (src) => path.resolve(process.cwd(), src)
+const resolvePath = src => path.resolve(process.cwd(), src)
 
 module.exports = {
   title: `xuwenchao' blogs`,
@@ -11,17 +11,13 @@ module.exports = {
     sidebarDepth: 3,
     lastUpdated: '上次更新'
   },
-  plugins: [
-    '@vuepress/last-updated',
-    '@vuepress/back-to-top',
-    '@vuepress/medium-zoom'
-  ],
+  plugins: ['@vuepress/last-updated', '@vuepress/back-to-top', '@vuepress/medium-zoom'],
   alias: {
     '@design-patterns': resolvePath('./docs/design-patterns'),
     '@blogs': resolvePath('./docs/blogs')
   },
   markdown: {
-    extendMarkdown: (md) => {
+    extendMarkdown: md => {
       md.use(markdownItTaskLists)
     }
   },
