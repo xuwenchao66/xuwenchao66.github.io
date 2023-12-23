@@ -2,7 +2,7 @@
   <div id="global-layout">
     <component :is="layout" />
     <footer class="global-layout__footer">
-      <a href="http://beian.miit.gov.cn" target="_blank">xxx备案号</a>
+      <a href="https://beian.miit.gov.cn" target="_blank">粤ICP备2023151151号-1</a>
     </footer>
   </div>
 </template>
