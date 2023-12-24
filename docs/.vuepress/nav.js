@@ -1,6 +1,6 @@
 module.exports = [
   {
-    text: '博客',
+    text: '技术笔记',
     link: '/blogs/'
   },
   {
