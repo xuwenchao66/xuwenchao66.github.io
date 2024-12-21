@@ -1,4 +1,3 @@
 - 徐文超
-- 一个程序员
-- GitHub: [https://github.com/xuwenchao66](https://github.com/xuwenchao66)
+- 程序员
 - 微信：yueliang309408
