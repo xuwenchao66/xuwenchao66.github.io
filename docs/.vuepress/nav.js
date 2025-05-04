@@ -1,5 +1,9 @@
 module.exports = [
   {
+    text: 'Apps',
+    link: '/apps/'
+  },
+  {
     text: '技术笔记',
     link: '/blogs/'
   },
