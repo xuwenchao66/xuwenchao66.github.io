@@ -1,6 +1,6 @@
 module.exports = [
   {
-    text: 'Apps',
+    text: '作品',
     link: '/apps/'
   },
   {

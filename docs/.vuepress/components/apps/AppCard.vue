@@ -61,7 +61,7 @@ export default {
 <style scoped>
 .app-card {
   max-width: 900px;
-  margin: 50px auto 0;
+  margin: 20px auto 0;
   padding: 30px;
   background-color: #fff;
   border-radius: 14px;
