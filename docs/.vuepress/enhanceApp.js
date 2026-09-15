@@ -1,5 +1,5 @@
 const redirectList = {
-  '/': '/apps/',
+  '/': '/blogs/ast-and-babel/',
   '/blogs/': '/blogs/ast-and-babel/',
   '/reading-notes/': '/reading-notes/refactoring/'
 }
